@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Resume Editor</title>
+    <link rel="stylesheet" href="odev2.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.0/axios.min.js"></script>
+</head>
+
+<body>
+    <nav>
+        <div class= "profile-logo">
+            <a href="https://istanbulegitimakademi.com/">
+                <img src="1.jpg"></a>
+            <h3>Oğuzhan Muratoğlu</h3>
+        </div>
+        <ul class="head">
+            <li><a href="./index.html" style="font-size: 200%">Home Page</a></li>
+            <li><a href="./odev2.html" style="font-size: 200%;">Edit Resume</a></li>
+        </ul>
+        <ul>
+            <li class="dropdown">
+                <span><i class="fa-solid fa-grip-lines" style="font-size: 300%; color: #1f407a;"></i></span>
+
+                <div class="dropdown-content">
+                    <a href="./index.html">Home Page</a>
+                    <a href="./odev2.html">Edit Resume</a>
+                </div>                
+            </li>
+        </ul>
+    </nav>
+    <div class="container">
+
+        <header>Admin Panel</header>
+
+            <div class="form">
+                <div class="details personal">
+                    <span id="container-title" class="title">Personal Details</span>
+                    <div id="container-field" class="fields">
+                        <div class="input-field">
+                            <label>First Name</label>
+                            <input id="firstName" type="text" placeholder="Enter your First Name">
+                        </div>
+                        <div class="input-field">
+                            <label>Last Name</label>
+                            <input id="lastName" type="text" placeholder="Enter your Last Name">
+                        </div>
+                        <div class="input-field">
+                            <label>Title</label>
+                            <input id="title" type="text" placeholder="Enter your title">
+                        </div>
+
+                        <div class="input-field">
+                            <label>Date of Birth</label>
+                            <input id="dateOfBirth" type="date" placeholder="Enter birth date">
+                        </div>
+                        <div class="input-field">
+                            <label>Email</label>
+                            <input id="email" type="text" placeholder="Enter your email">
+                        </div>
+                        <div class="input-field">
+                            <label>Address</label>
+                            <input id="address" type="text" placeholder="Enter your Address">
+                        </div>
+                        <div class="input-field">
+                            <label>Mobile Number</label>
+                            <input id="phone" type="text" placeholder="Enter mobile number">
+                        </div>
+                        <!-- <div class="input-field">
+                            <label>Profile Photo</label>
+                            <input type="text" placeholder="Enter your Nationality"> 
+                        </div> -->
+                    </div>
+                </div>
+
+                <div class="aboutMe">
+                    <span >About Me</span>
+
+                    <div id="container-field" class="fields">
+                        <div class="input-field" style="width: 100%">
+                            <label>Tell us about yourself (Max 400 Characters)</label>
+                            <textarea id="about-me" type="text" style="height: auto; min-height: 100px;" placeholder="I'm a full stack developer..." maxlength="400"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="social-pages" class="details socials">
+                    <span class="title">Skills</span> 
+                </div>
+
+                
+
+                <div id="experience-field" class="experiences">
+                    <div class="title-style">
+                        <span class="title">Experiences</span>
+                    <button class="add-form" onclick="addworkExperiences()">Ekle +</button>
+                    </div>
+                        <div id="workExperiences"></div>
+                        <div id="addworkExperience"></div>
+                </div>
+
+                <div id="skills-field" class="skills">
+                    <span class="title">Skills</span>
+                    <button class="add-form" onclick="addSkillsField()">Ekle (+)</button>
+
+                    
+                </div>
+                <div>
+                    <button class="add-form" onclick="updatePersonalDetails();">Update</button>
+                </div> 
+            </div>
+            
+    </div>
+    
+
+    <script src="https://kit.fontawesome.com/43ce813bff.js" crossorigin="anonymous"></script> 
+    <script src="odev2Controller.js"></script>
+</body>
+        
+</html>
