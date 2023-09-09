@@ -27,17 +27,6 @@ function setMyInformation(person){
     document.getElementById("email").innerText = person.email;
     document.getElementById("dateOfBirth").innerText = setAndConvertDate(person.dateOfBirth);
     document.getElementById("img").src = person.img;
-
-
-    document.getElementById("firstName").value = person.name;
-    document.getElementById("lastName").value = person.lastName;
-    document.getElementById("title").value = person.title;
-    document.getElementById("dateOfBirth").value = `${year}-${month}-${day}`;
-    document.getElementById("email").value = person.email;
-    document.getElementById("address").value = person.address;
-    document.getElementById("phone").value = person.phone;
-    document.getElementById("about-me").value = person.aboutMe;
-
 }
 
 function setMySocialMedias(socialMedias){

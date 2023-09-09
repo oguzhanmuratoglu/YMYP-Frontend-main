@@ -110,7 +110,7 @@ let educations = [
         gap : "86.67"
     },
     {
-        id: 1,
+        id: 2,
         schoolName: "Kocaeli University - Civil Engineering",
         location : "Kocaeli in TR",
         date : "2013-2017",
