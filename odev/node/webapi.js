@@ -5,9 +5,6 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-const todos=[];
-let id = 0;
-
 let person = {
 
     id : 1,
@@ -38,19 +35,19 @@ let skills = [
     },
 
     {
-        id : 1,
+        id : 3,
         title : "JavaScript",
         rate : 40
     },
 
     {
-        id : 1,
+        id : 4,
         title : "Angular",
         rate : 75
     },
 
     {
-        id : 1,
+        id : 5,
         title : "Node.js",
         rate : 60
     }
@@ -121,7 +118,7 @@ let educations = [
 let references = [
     {
         id : 1,
-        name: "Taner Saydam",
+        referanceName: "Taner Saydam",
         description : "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Adipisci"
     },
     {
@@ -139,13 +136,13 @@ let certifications = [
 
     },
     {
-        id : 1,
+        id : 2,
         title : "Komple ASP.NET Web Geliştirme Eğitimi",
         description : "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Adipisci"
 
     },
     {
-        id : 1,
+        id : 3,
         title : "AspNet Core Web/API+Çok Katmanlı Mimari",
         description : "Fatih Çakıroğlu"
 
@@ -171,6 +168,18 @@ app.get("/api/remove/:id",(req,res)=>{
     const id = req.params.id;
 
     const index = skills.findIndex(p=>p.id === +id);
+    if(index===-1) res.status(500).json({message: "The record you want to delete was no found!"});
+    else{
+        skills.splice(index,1);
+        res.json({message: "Remove is successful"});
+    }
+
+});
+
+app.get("/api/remove/workExperience/:id",(req,res)=>{
+    const id = req.params.id;
+
+    const index = workExperiences.findIndex(p=>p.id === +id);
     if(index===-1) res.status(500).json({message: "The record you want to delete was no found!"});
     else{
         skills.splice(index,1);

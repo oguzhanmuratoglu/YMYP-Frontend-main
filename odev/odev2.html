@@ -40,32 +40,32 @@
                     <div id="container-field" class="fields">
                         <div class="input-field">
                             <label>First Name</label>
-                            <input id="firstName" type="text" placeholder="Enter your First Name">
+                            <input id="firstName" class="personal-details" type="text" placeholder="Enter your First Name">
                         </div>
                         <div class="input-field">
                             <label>Last Name</label>
-                            <input id="lastName" type="text" placeholder="Enter your Last Name">
+                            <input id="lastName" type="text" class="personal-details" placeholder="Enter your Last Name">
                         </div>
                         <div class="input-field">
                             <label>Title</label>
-                            <input id="title" type="text" placeholder="Enter your title">
+                            <input id="title" class="personal-details" type="text" placeholder="Enter your title">
                         </div>
 
                         <div class="input-field">
                             <label>Date of Birth</label>
-                            <input id="dateOfBirth" type="date" placeholder="Enter birth date">
+                            <input id="dateOfBirth" class="personal-details" type="date" placeholder="Enter birth date">
                         </div>
                         <div class="input-field">
                             <label>Email</label>
-                            <input id="email" type="text" placeholder="Enter your email">
+                            <input id="email" type="text" class="personal-details" placeholder="Enter your email">
                         </div>
                         <div class="input-field">
                             <label>Address</label>
-                            <input id="address" type="text" placeholder="Enter your Address">
+                            <input id="address" class="personal-details" type="text" placeholder="Enter your Address">
                         </div>
                         <div class="input-field">
                             <label>Mobile Number</label>
-                            <input id="phone" type="text" placeholder="Enter mobile number">
+                            <input id="phone" type="text" class="personal-details" placeholder="Enter mobile number">
                         </div>
                         <!-- <div class="input-field">
                             <label>Profile Photo</label>
@@ -80,7 +80,7 @@
                     <div id="container-field" class="fields">
                         <div class="input-field" style="width: 100%">
                             <label>Tell us about yourself (Max 400 Characters)</label>
-                            <textarea id="about-me" type="text" style="height: auto; min-height: 100px;" placeholder="I'm a full stack developer..." maxlength="400"></textarea>
+                            <textarea id="about-me" class="personal-details" type="text" style="height: auto; min-height: 100px;" placeholder="I'm a full stack developer..." maxlength="400"></textarea>
                         </div>
                     </div>
                 </div>
@@ -125,6 +125,16 @@
                 </div>
 
 
+                <div id="experience-field" class="experiences">
+                    <div class="title-style">
+                        <span class="title">Certifications</span>
+                    <button class="add-form" onclick="addCertification()">Ekle +</button>
+                    </div>
+                        <div id="certification"></div>
+                        <div id="certifications"></div>
+                </div>
+
+
 
                 <div id="skills-field" class="skills">
                     <span class="title">Skills</span>
@@ -133,7 +143,7 @@
                     
                 </div>
                 <div>
-                    <button class="add-form" onclick="updatePersonalDetails();">Update</button>
+                    <button class="add-form" onclick="updateAllResumeDetails();">Update</button>
                 </div> 
             </div>
             

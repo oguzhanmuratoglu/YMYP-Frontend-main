@@ -1,4 +1,5 @@
 let MyData = {};
+let UpdatedMyData = {};
 let day =  "16";
 let month =  "04";
 let year =  "1999";
@@ -6,6 +7,12 @@ let workExperienceId =0;
 let educationId = 0;
 let referenceId = 0;
 let socialMediaId=0;
+let certificationId=0;
+let id =1;
+let id2 =1;
+let id3 =1;
+let id4 =1;
+let id5 =1;
 get();
 
 function get(){
@@ -17,6 +24,7 @@ function get(){
         setMyEducations(MyData.educations);
         setMyReferences(MyData.references);
         setMySocialMedias(MyData.socialMedias);
+        setMyCertifications(MyData.certifications);
 
     });
 }
@@ -71,25 +79,25 @@ function setMyInformation(person){
             text+=`<div id="work-experience-${workExperience.id}" class="fields experience">
             <div class="input-field">
                 <label>Start Date</label>
-                <input id="start" value="${workExperience.startYear}"  type="text" placeholder="Enter your Start Date">
+                <input id="start-${workExperience.id}" class="work-experiences" value="${workExperience.startYear}"  type="text" placeholder="Enter your Start Date">
             </div>
             <div class="input-field">
                 <label>End Date</label>
-                <input id="end" value="${workExperience.endYear}" type="text" placeholder="Enter your End Date">
+                <input id="end-${workExperience.id}" class="work-experiences" value="${workExperience.endYear}" type="text" placeholder="Enter your End Date">
             </div>
             <div class="input-field">
                 <label>Company</label>
-                <input id="company" value="${workExperience.company}" type="text" placeholder="Enter your Company">
+                <input id="company-${workExperience.id}" class="work-experiences" value="${workExperience.company}" type="text" placeholder="Enter your Company">
             </div>
             <div class="input-field">
                 <label>Title</label>
-                <input id="title" value="${workExperience.title}" type="text" placeholder="Enter your Title">
+                <input id="title-${workExperience.id}" class="work-experiences" value="${workExperience.title}" type="text" placeholder="Enter your Title">
             </div>
             <div class="input-field">
                 <label>Description</label>
-                <input id="description" value="${workExperience.description}" type="text" placeholder="Enter your Description">
+                <input id="description-${workExperience.id}" class="work-experiences" value="${workExperience.description}" type="text" placeholder="Enter your Description">
             </div>
-            <button class="deleteButton" onclick="deleteExperinceDetail(${workExperience.id})">Çıkar +</button>
+            <button class="deleteButton" onclick="deleteExperinceDetail(${workExperience.id})">Çıkar -</button>
         </div>`;
         workExperienceId++;
         }
@@ -103,25 +111,25 @@ function setMyInformation(person){
         `<div id="work-experience-${workExperienceId}" class="fields experience">
         <div class="input-field">
             <label>Start Date</label>
-            <input id="start" type="text" placeholder="Enter your Start Date">
+            <input id="start-${workExperienceId}" class="work-experiences" type="text" placeholder="Enter your Start Date">
         </div>
         <div class="input-field">
             <label>End Date</label>
-            <input id="end" type="text" placeholder="Enter your End Date">
+            <input id="end-${workExperienceId}" class="work-experiences" type="text" placeholder="Enter your End Date">
         </div>
         <div class="input-field">
             <label>Company</label>
-            <input id="company" type="text" placeholder="Enter your Company">
+            <input id="company-${workExperienceId}" class="work-experiences" type="text" placeholder="Enter your Company">
         </div>
         <div class="input-field">
             <label>Title</label>
-            <input id="title" type="text" placeholder="Enter your Title">
+            <input id="title-${workExperienceId}" class="work-experiences" type="text" placeholder="Enter your Title">
         </div>
         <div class="input-field">
             <label>Description</label>
-            <input id="description" type="text" placeholder="Enter your Description">
+            <input id="description-${workExperienceId}" class="work-experiences" type="text" placeholder="Enter your Description">
         </div>
-        <button class="deleteButton" onclick="deleteExperinceDetail(${workExperienceId})">Çıkar +</button>
+        <button class="deleteButton" onclick="deleteExperinceDetail(${workExperienceId})">Çıkar -</button>
     </div>`;
     }
 
@@ -141,19 +149,19 @@ function setMyInformation(person){
             text+= ` <div id="education-${education.id}" class="fields experience">
             <div class="input-field">
                 <label>School Name</label>
-                <input id="schoolName" value="${education.schoolName}" type="text" placeholder="Enter your School Name">
+                <input id="schoolName-${education.id}" class="educations" value="${education.schoolName}" type="text" placeholder="Enter your School Name">
             </div>
             <div class="input-field">
                 <label>Location</label>
-                <input id="location" type="text" value="${education.location}" placeholder="Enter your School Location">
+                <input id="location-${education.id}" type="text" class="educations" value="${education.location}" placeholder="Enter your School Location">
             </div>
             <div class="input-field">
                 <label>Date</label>
-                <input id="date" type="text" value="${education.date}" placeholder="Exp:  2017-2022">
+                <input id="date-${education.id}" type="text" class="educations" value="${education.date}" placeholder="Exp:  2017-2022">
             </div>
             <div class="input-field">
                 <label>Gap</label>
-                <input id="gap" type="text" value="${education.gap}" placeholder="Enter your GAP SCORE">
+                <input id="gap-${education.id}" type="text" class="educations" value="${education.gap}" placeholder="Enter your GAP SCORE">
             </div>
             <button class="deleteButton" onclick="deleteEducationDetail(${education.id})">Çıkar +</button>
         </div>`;
@@ -168,19 +176,19 @@ function setMyInformation(person){
         ` <div id="education-${educationId}" class="fields experience">
         <div class="input-field">
             <label>School Name</label>
-            <input id="schoolName"  type="text" placeholder="Enter your School Name">
+            <input id="schoolName-${educationId}" class="educations" type="text" placeholder="Enter your School Name">
         </div>
         <div class="input-field">
             <label>Location</label>
-            <input id="location" type="text"  placeholder="Enter your School Location">
+            <input id="location-${educationId}" type="text" class="educations" placeholder="Enter your School Location">
         </div>
         <div class="input-field">
             <label>Date</label>
-            <input id="date" type="text"  placeholder="Exp:  2017-2022">
+            <input id="date-${educationId}" type="text" class="educations" placeholder="Exp:  2017-2022">
         </div>
         <div class="input-field">
             <label>Gap</label>
-            <input id="gap" type="text"  placeholder="Enter your GAP SCORE">
+            <input id="gap-${educationId}" type="text" class="educations" placeholder="Enter your GAP SCORE">
         </div>
         <button class="deleteButton" onclick="deleteEducationDetail(${educationId})">Çıkar +</button>
     </div>`;
@@ -201,11 +209,11 @@ function setMyInformation(person){
             text+=`<div id="reference-${reference.id}" class="fields experience">
             <div class="input-field">
                 <label>Reference Name</label>
-                <input id="referanceName"  type="text" value="${reference.name}" placeholder="Enter your reference name">
+                <input id="referanceName-${reference.id}" class="references"  type="text" value="${reference.referanceName}" placeholder="Enter your reference name">
             </div>
             <div class="input-field">
                 <label>Description</label>
-                <input id="description" type="text" value="${reference.description}"  placeholder="Enter your Reference Description">
+                <input id="description-${reference.id}" type="text" class="references" value="${reference.description}"  placeholder="Enter your Reference Description">
             </div>
             <button class="deleteButton" onclick="deleteReferanceDetail(${reference.id})">Çıkar +</button>
         </div>`;
@@ -221,11 +229,11 @@ function setMyInformation(person){
         ` <div id="reference-${referenceId}" class="fields experience">
         <div class="input-field">
             <label>Reference Name</label>
-            <input id="referanceName"  type="text" placeholder="Enter your reference name">
+            <input id="referanceName-${referenceId}" class="references"  type="text" placeholder="Enter your reference name">
         </div>
         <div class="input-field">
             <label>Description</label>
-            <input id="description" type="text" placeholder="Enter your Reference Description">
+            <input id="description-${referenceId}" class="references" type="text" placeholder="Enter your Reference Description">
         </div>
         <button class="deleteButton" onclick="deleteReferanceDetail(${referenceId})">Çıkar +</button>
     </div>`;
@@ -245,15 +253,15 @@ function setMyInformation(person){
             text+=`<div id="socialMedia-${socialMedia.id}" class="fields experience">
             <div class="input-field">
                 <label>Title</label>
-                <input id="title" type="text" value="${socialMedia.title}" placeholder="Exp: data-feather='linkedin' linkedin is a title">
+                <input class="social-medias" id="title-${socialMedia.id}" type="text" value="${socialMedia.title}" placeholder="Exp: data-feather='linkedin' linkedin is a title">
             </div>
             <div class="input-field">
                 <label>Text</label>
-                <input id="text" value="${socialMedia.text}" type="text" placeholder="Exp: /MyLinkedIn">
+                <input class="social-medias" id="text-${socialMedia.id}" value="${socialMedia.text}" type="text" placeholder="Exp: /MyLinkedIn">
             </div>
             <div class="input-field">
                 <label>Link</label>
-                <input id="link" value="${socialMedia.link}" type="text" placeholder="Enter your socail media link">
+                <input class="social-medias" id="link-${socialMedia.id}" value="${socialMedia.link}" type="text" placeholder="Enter your socail media link">
             </div>
             <button class="deleteButton" onclick="deleteSocialMediaDetail(${socialMedia.id})">Çıkar +</button>
         </div>`;
@@ -267,15 +275,16 @@ function setMyInformation(person){
         `<div id="socialMedia-${socialMediaId}" class="fields experience">
         <div class="input-field">
             <label>Title</label>
-            <input id="title" type="text" placeholder="Exp: data-feather='linkedin' linkedin is a title">
+            <input class="social-medias" id="title-${socialMediaId}" type="text" placeholder="Exp: data-feather='linkedin' linkedin is a title">
+            <div id="title-${socialMediaId}-validation" class="hide error">Bu alanı doldurmak zorundasın!</div>
         </div>
         <div class="input-field">
             <label>Text</label>
-            <input id="text" type="text" placeholder="Exp: /MyLinkedIn">
+            <input class="social-medias" id="text-${socialMediaId}" type="text" placeholder="Exp: /MyLinkedIn">
         </div>
         <div class="input-field">
             <label>Link</label>
-            <input id="link" type="text" placeholder="Enter your socail media link">
+            <input class="social-medias" id="link-${socialMediaId}" type="text" placeholder="Enter your socail media link">
         </div>
         <button class="deleteButton" onclick="deleteSocialMediaDetail(${socialMediaId})">Çıkar +</button>
     </div>`;
@@ -284,18 +293,341 @@ function setMyInformation(person){
         document.getElementById(`socialMedia-${ìd}`).remove();
     }
 
-function updatePersonalDetails(){
-    const firstName = document.getElementById("firstName").value;
-    const lastName = document.getElementById("lastName").value;
-    const title = document.getElementById("title").value;
-    const dateOfBirth = document.getElementById("dateOfBirth").value;
-    const email = document.getElementById("email").value;
-    const address = document.getElementById("address").value;
-    const phone = document.getElementById("phone").value;
-    const aboutMe = document.getElementById("about-me").value;
+    function setMyCertifications(certifications){
+        document.getElementById("certification").innerHTML = createCertificationsHtmlTags(certifications);
+    }
 
-    axios.post("http://localhost:5000/api/set")
-        .then(res=> {
-                get();
+    function createCertificationsHtmlTags(certifications){
+        let text ="";
+
+        for(let certification of certifications){
+            text+=`<div id="certification-${certification.id}" class="fields experience">
+            <div class="input-field">
+                <label>Title</label>
+                <input id="title-${certification.id}" class="certifications" type="text" value="${certification.title}" placeholder="Enter your certification title">
+            </div>
+            <div class="input-field">
+                <label>Description</label>
+                <input id="description-${certification.id}" class="certifications" value="${certification.description}" type="text" placeholder="Enter a description">
+            </div>
+            <button class="deleteButton" onclick="deleteCertificationDetail(${certification.id})">Çıkar +</button>
+        </div>`;
+            certificationId++;
+        }
+        return text;
+    }
+
+    function addCertification(){
+        certificationId++;
+        document.getElementById("certifications").innerHTML+= `<div id="certification-${certificationId}" class="fields experience">
+        <div class="input-field">
+            <label>Title</label>
+            <input id="title-${certificationId}" class="certifications" type="text" placeholder="Enter your certification title">
+        </div>
+        <div class="input-field">
+            <label>Description</label>
+            <input id="description-${certificationId}" class="certifications" type="text" placeholder="Enter a description">
+        </div>
+        <button class="deleteButton" onclick="deleteCertificationDetail(${certificationId})">Çıkar +</button>
+    </div>`;
+    }
+
+    function deleteCertificationDetail(ìd){
+        document.getElementById(`certification-${ìd}`).remove();
+    }
+
+
+    function updateAllResumeDetails(){
+        const workExperiencesCheck = updateWorkExperiencesCheck();
+        const personalDetailsCheck = updatePersonalDetailsCheck();
+        const certificationsCheck = updateCertificationsCheck();
+        const educationsCheck = updateEducationsCheck();
+        const socialMediasCheck = updateSocialMediasCheck();
+        const referencesCheck = updateReferencesCheck();
+
+
+        if(!workExperiencesCheck || !personalDetailsCheck || !certificationsCheck || !educationsCheck || !socialMediasCheck || !referencesCheck)
+        {
+            alert("Tüm alanları doldurmalısınız!");
+            return;
+        }
+
+        updateAllDetails();
+    }
+
+    function updatePersonalDetailsCheck(){
+        const personalDetails = document.querySelectorAll(".personal-details");
+        for(let personalDetail of personalDetails){
+            if(!personalDetail.value){
+                return false;
+            }
+        }
+        return true;
+    }
+    function updateWorkExperiencesCheck(){
+        const workExperiences = document.querySelectorAll(".work-experiences");
+        for(let workExperience of workExperiences){
+            if(!workExperience.value){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    function updateEducationsCheck(){
+        const educations = document.querySelectorAll(".educations");
+        for(let education of educations){
+            if(!education.value){
+                return false;
+            }
+        }
+        return true;
+    };
+
+    function updateSocialMediasCheck(){
+        const socialMedias = document.querySelectorAll(".social-medias");
+        for(let socialMedia of socialMedias){
+            if(!socialMedia.value){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    function updateCertificationsCheck(){
+    
+        const certifications = document.querySelectorAll(".certifications");
+        for(let certification of certifications){
+            if(!certification.value){
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+    function updateReferencesCheck(){
+    
+        const references = document.querySelectorAll(".references");
+        for(let reference of references){
+            if(!reference.value){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    function updateAllDetails(){
+            const person = {
+              id : 1,
+              name: document.getElementById("firstName").value,
+              lastName: document.getElementById("lastName").value,
+              title: document.getElementById("title").value,
+              dateOfBirth: document.getElementById("dateOfBirth").value,
+              email: document.getElementById("email").value,
+              address: document.getElementById("address").value,
+              phone: document.getElementById("phone").value,
+              aboutMe: document.getElementById("about-me").value,
+            };
+
+            const gettedSocialMedias = document.querySelectorAll(".social-medias");
+            let check12 = false;
+            let check13 = false;
+            let check14 = false;
+            const socialMedias = [];
+            
+            for(let gettedSocialMedia of gettedSocialMedias){
+                id4= +removeTextBeforeHyphen(gettedSocialMedia.id);
+                if(gettedSocialMedia.id === `title-${id4}`)
+                {
+                    title = gettedSocialMedia.value.toString();
+                    check12 = true;
+                }
+                if(gettedSocialMedia.id === `text-${id4}`)
+                {
+                    text = gettedSocialMedia.value.toString();
+                    check13 = true;
+                }
+                if(gettedSocialMedia.id === `link-${id4}`)
+                {
+                    link = gettedSocialMedia.value.toString();
+                    check14 = true;
+                }
+                
+                if(check12&&check13&&check14){
+                    socialMedias.push({id:id4, title, text, link});
+                check12 =false;
+                check13 =false;
+                check14 =false;
+                }
+            }
+
+            const gettedExperiences = document.querySelectorAll(".work-experiences");
+            let check1 = false;
+            let check2 = false;
+            let check3 = false;
+            let check4 = false;
+            let check5 = false;
+            const workExperiences = [];
+            for(let gettedExperience of gettedExperiences){
+                id= +removeTextBeforeHyphen(gettedExperience.id);
+                if(gettedExperience.id === `start-${id}`)
+                {
+                    startYear = gettedExperience.value.toString();
+                    check1 = true;
+                }
+                if(gettedExperience.id === `end-${id}`)
+                {
+                    endYear = gettedExperience.value.toString();
+                    check2 = true;
+                }
+                if(gettedExperience.id === `company-${id}`)
+                {
+                    company = gettedExperience.value.toString();
+                    check3 = true;
+                }
+                if(gettedExperience.id === `title-${id}`)
+                {
+                    title = gettedExperience.value.toString();
+                    check4 = true;
+                }
+                if(gettedExperience.id === `description-${id}`)
+                {
+                    description = gettedExperience.value.toString();
+                    check5 = true;
+                }
+                if(check1&&check2&&check3&&check4&&check5){
+                workExperiences.push({id, startYear, endYear, company, title, description});
+                check1 =false;
+                check2 =false;
+                check3 =false;
+                check4 =false;
+                check5 =false;
+                }
+            }
+            
+            const gettedEducations = document.querySelectorAll(".educations");
+            let check6 = false;
+            let check7 = false;
+            let check8 = false;
+            let check9 = false;
+            let location = "";
+            const educations = [];
+            
+            for(let gettedEducation of gettedEducations){
+                id2= +removeTextBeforeHyphen(gettedEducation.id);
+                if(gettedEducation.id === `schoolName-${id2}`)
+                {
+                    schoolName = gettedEducation.value.toString();
+                    check6 = true;
+                }
+                if(gettedEducation.id === `location-${id2}`)
+                {
+                    location = gettedEducation.value.toString();
+                    check7 = true;
+                }
+                if(gettedEducation.id === `date-${id2}`)
+                {
+                    date = gettedEducation.value.toString();
+                    check8 = true;
+                }
+                if(gettedEducation.id === `gap-${id2}`)
+                {
+                    gap = gettedEducation.value.toString();
+                    check9 = true;
+                }
+                
+                if(check6&&check7&&check8&&check9){
+                    educations.push({id:id2, schoolName, location, date, gap});
+                check6 =false;
+                check7 =false;
+                check8 =false;
+                check9 =false;
+                }
+            }
+
+            const gettedReferences = document.querySelectorAll(".references");
+            let check10 = false;
+            let check11 = false;
+            const references = [];
+            
+            for(let gettedReference of gettedReferences){
+                id3= +removeTextBeforeHyphen(gettedReference.id);
+                if(gettedReference.id === `referanceName-${id3}`)
+                {
+                    referanceName = gettedReference.value.toString();
+                    check10 = true;
+                }
+                if(gettedReference.id === `description-${id3}`)
+                {
+                    description = gettedReference.value.toString();
+                    check11 = true;
+                }
+                
+                if(check10&&check11){
+                    references.push({id:id3, referanceName, description});
+                check10 =false;
+                check11 =false;
+                }
+            }
+            
+            const gettedCertifications = document.querySelectorAll(".certifications");
+            let check15 = false;
+            let check16 = false;
+            const certifications = [];
+            debugger;
+            
+            for(let gettedCertification of gettedCertifications){
+                
+                id5= +removeTextBeforeHyphen(gettedCertification.id);
+                if(gettedCertification.id === `title-${id5}`)
+                {
+                    title = gettedCertification.value.toString();
+                    check15 = true;
+                }
+                if(gettedCertification.id === `description-${id5}`)
+                {
+                    description = gettedCertification.value.toString();
+                    check16 = true;
+                }
+                
+                if(check15&&check16){
+                    certifications.push({id:id5, title, description});
+                    check15 =false;
+                    check16 =false;
+                }
+            }
+            UpdatedMyData = {
+                person: person,
+                socialMedias: socialMedias,
+                workExperiences : workExperiences,
+                educations : educations,
+                references : references,
+                certifications : certifications
+            }
+
+
+     
+           axios.post("http://localhost:5000/api/set", UpdatedMyData)
+            .then((response) => {
+              alert("Bilgiler başarıyla güncellendi!");
+            })
+            .catch((error) => {
+              alert("Güncelleme sırasında bir hata oluştu: " + error.message);
             });
+
+            
 }
+
+function removeTextBeforeHyphen(inputString) {
+    if (!inputString.includes("-")) {
+        return inputString;
+    }
+
+    const parts = inputString.split("-");
+    
+    const result = parts.slice(1).join("-");
+    
+    return result;
+}
+
