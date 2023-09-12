@@ -15,6 +15,8 @@ let id4 =1;
 let id5 =1;
 get();
 
+
+
 function get(){
     axios.get("http://localhost:5000/api/get").then(res=>{
         MyData = res.data;
@@ -575,7 +577,6 @@ function setMyInformation(person){
             let check15 = false;
             let check16 = false;
             const certifications = [];
-            debugger;
             
             for(let gettedCertification of gettedCertifications){
                 
@@ -630,4 +631,82 @@ function removeTextBeforeHyphen(inputString) {
     
     return result;
 }
+
+const inputFieldsPd = document.querySelectorAll(".personal-details");
+const inputFieldsWe = document.querySelectorAll(".work-experiences");
+const inputFieldsEd = document.querySelectorAll(".educations");
+const inputFieldsRe = document.querySelectorAll(".references");
+const inputFieldsSm = document.querySelectorAll(".social-medias");
+const inputFieldsCe = document.querySelectorAll(".certifications");
+
+
+const indexName = document.getElementById("indexName");
+const indexLastName = document.getElementById("indexLastName");
+const indexTitle = document.getElementById("indexTitle");
+const indexAboutMe = document.getElementById("indexAboutMe");
+const indexDateOfBirth = document.getElementById("indexDateOfBirth");
+const indexPhone = document.getElementById("indexPhone");
+const indexLocation = document.getElementById("indexLocation");
+const indexEmail = document.getElementById("indexEmail");
+
+const resumeDisplay = document.getElementById('resume-display');
+const editDisplay = document.getElementById('edit-form');
+
+inputFieldsPd.forEach(inputFieldPd => {
+    inputFieldPd.addEventListener('input', updateResume);
+});
+
+    function updateResume(){
+
+    const valuesPd = Array.from(inputFieldsPd).map(input => input.value);
+    debugger;
+    indexName.innerText = valuesPd[0];
+    indexLastName.innerText = valuesPd[1];
+    indexTitle.innerText = valuesPd[2];
+    indexDateOfBirth.innerText = setAndConvertDate(valuesPd[3]);
+    indexEmail.innerText = valuesPd[4];
+    indexLocation.innerText = valuesPd[5];
+    indexPhone.innerText = valuesPd[6];
+    indexAboutMe.innerHTML = valuesPd[7];
+
+    // resumeDisplay.innerHTML = updatedResume;
+    resumeDisplay.classList.remove("hidden");
+    resumeDisplay.classList.add("resume-display");
+    editDisplay.classList.add("edit-form");
+
+}
+function setAndConvertDate(data){
+    const date = new Date(data);   
+    day =  date.getDate();
+    day = day.toString().length === 1 ? "0" + day.toString() : day;
+
+    month =  date.getMonth() + 1;
+    month = month.toString().length === 1 ? "0" + month.toString() : month;
+
+    year =  date.getFullYear();
+    const dateString = `${day}/${month}/${year}`
+    return dateString;
+}
+
+
+// Sayfanın yüksekliğini alın
+const pageHeight = document.body.scrollHeight;
+
+// Sayfa içindeki dikey kaydırma olaylarını dinleyin
+window.addEventListener('scroll', () => {
+    // Sayfanın şu anki kaydırma pozisyonunu alın
+    const scrollPosition = window.scrollY;
+    // İframe'i istediğiniz şekilde hareket ettirin
+    // Örneğin, sayfanın yukarı kaydırılmasıyla iframe'i yukarı kaydırabilirsiniz
+    // Burada sayfanın yukarıya kaydırılma ile ilgili bir kontrol sağlayabilirsiniz.
+    // Örnek olarak:
+    if(scrollPosition>250){
+        if (scrollPosition -980 < pageHeight) {
+            resumeDisplay.style.transform = `translateY(${scrollPosition-200}px)`;
+        }
+    }
+});
+
+
+
 
