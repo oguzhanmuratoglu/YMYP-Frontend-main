@@ -390,23 +390,7 @@ body{
 	gap: 5rem;
 }
 
-@media only screen and (max-width: 768px) {
-    .resume-display .container{
-        width: 100%;
-        grid-template-columns: 1fr;
-        padding: 3rem;
-        gap: 7rem;
-    }
-    .profile {
-		margin-bottom: 0;
-	}
-	.group-3 {
-		flex-direction: column;
-	}
-    .profile_container {
-		flex-direction: column;
-	}
-}
+
 
 .skills_list {
 	margin-top: 1rem;
@@ -558,8 +542,8 @@ hr {
 .resume-display a{
 	text-decoration: none;
 	color: white;
-    overflow-y: scroll;
-    height: 300%;
+    overflow: visible;
+    height: 100%;
 }
 .description {
 	margin-top: 1rem;
@@ -576,28 +560,27 @@ hr {
     .container .form::-webkit-scrollbar{
        display: none;
     }
-    .fields .input-field{
-        width: calc(100% / 2 - 15px);
-    }
+    
     
 }
-@media screen and (max-width: 550px) {
-    .fields .input-field{
-        width: 100%
-    }
-} 
-@media only screen and (max-width: 768px) {
-	hr {
-		margin: 0 auto;
+
+
+@media screen and (max-width: 1400px)
+{
+    .profile_container {
+		flex-direction: column;
 	}
 }
-
 @media screen and (max-width: 1080px)
 {
     .profile-logo{
         scale: 80%;
     }
+    
 
+    .fields .input-field{
+        width: calc(100% / 2 - 15px);
+    }
 
     .dropdown-content{
         display: block;
@@ -620,5 +603,30 @@ hr {
         margin: 0px 0px;
         background-color: #fff;
     }
+    
+}
+
+@media only screen and (max-width: 768px) {
+	hr {
+		margin: 0 auto;
+	}
+    .fields .input-field{
+        width: 100%
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .resume-display .container{
+        width: 100%;
+        grid-template-columns: 1fr;
+        padding: 3rem;
+        gap: 7rem;
+    }
+    .profile {
+		margin-bottom: 0;
+	}
+	.group-3 {
+		flex-direction: column;
+	}
     
 }

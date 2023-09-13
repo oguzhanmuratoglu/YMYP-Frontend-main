@@ -12,6 +12,7 @@ function get(){
         setMyworkExperiences(MyData.workExperiences);
         setMyEducations(MyData.educations);
         setMyReferences(MyData.references);
+        setMyCertifications(MyData.certifications);
     });
 }
 
@@ -45,6 +46,24 @@ function setMyEducations(educations){
 
 function setMyReferences(references){
     document.getElementById("references").innerHTML=createReferenceHtmlTags(references);
+}
+
+function setMyCertifications(certifications){
+    document.getElementById("certifications").innerHTML=createCertificationHtmlTags(certifications);
+}
+
+function createCertificationHtmlTags(certifications){
+    let text ="";
+    for(let certification of certifications){
+
+        text += `<div class="certification_item">
+        <h4 class="item_title">${certification.title}</h4>
+        <p class="description">${certification.description}</p>
+      </div>`;
+
+    }
+    
+    return text;
 }
 
 function createReferenceHtmlTags(references){

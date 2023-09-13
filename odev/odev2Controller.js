@@ -17,9 +17,25 @@ get();
 
 
 
-function get(){
-    axios.get("http://localhost:5000/api/get").then(res=>{
-        MyData = res.data;
+
+
+// async function get(){
+//     await axios.get("http://localhost:5000/api/get").then(res=>{
+//         MyData = res.data;
+
+//         setMyInformation(MyData.person);
+//         setMyWorkExperiences(MyData.workExperiences);
+//         setMyEducations(MyData.educations);
+//         setMyReferences(MyData.references);
+//         setMySocialMedias(MyData.socialMedias);
+//         setMyCertifications(MyData.certifications);
+
+//     });
+// }
+async function get() {
+    try {
+        const response = await axios.get("http://localhost:5000/api/get");
+        const MyData = response.data;
 
         setMyInformation(MyData.person);
         setMyWorkExperiences(MyData.workExperiences);
@@ -28,7 +44,34 @@ function get(){
         setMySocialMedias(MyData.socialMedias);
         setMyCertifications(MyData.certifications);
 
-    });
+        const inputFieldsPd = document.querySelectorAll(".personal-details");
+        const inputFieldsWe = document.querySelectorAll(".work-experiences");
+        const inputFieldsSm = document.querySelectorAll(".social-medias");
+        const inputFieldsCe = document.querySelectorAll(".certifications");
+        const inputFieldsRe = document.querySelectorAll(".references");
+        const inputFieldsEd = document.querySelectorAll(".educations");
+
+        inputFieldsPd.forEach(inputFieldPd => {
+            inputFieldPd.addEventListener('input', updateResume);
+        });
+        inputFieldsWe.forEach(inputFieldWe => {
+        inputFieldWe.addEventListener('input', updateResume);
+        });
+        inputFieldsSm.forEach(inputFieldSm => {
+            inputFieldSm.addEventListener('input', updateResume);
+        });
+        inputFieldsCe.forEach(inputFieldCe => {
+            inputFieldCe.addEventListener('input', updateResume);
+        });
+        inputFieldsRe.forEach(inputFieldRe => {
+            inputFieldRe.addEventListener('input', updateResume);
+        });
+        inputFieldsEd.forEach(inputFieldEd => {
+            inputFieldEd.addEventListener('input', updateResume);
+        });
+    } catch (error) {
+        console.error("Veri alınırken bir hata oluştu: ", error);
+    }
 }
 
 function setMyInformation(person){
@@ -632,34 +675,33 @@ function removeTextBeforeHyphen(inputString) {
     return result;
 }
 
-const inputFieldsPd = document.querySelectorAll(".personal-details");
-const inputFieldsWe = document.querySelectorAll(".work-experiences");
-const inputFieldsEd = document.querySelectorAll(".educations");
-const inputFieldsRe = document.querySelectorAll(".references");
-const inputFieldsSm = document.querySelectorAll(".social-medias");
-const inputFieldsCe = document.querySelectorAll(".certifications");
 
 
-const indexName = document.getElementById("indexName");
-const indexLastName = document.getElementById("indexLastName");
-const indexTitle = document.getElementById("indexTitle");
-const indexAboutMe = document.getElementById("indexAboutMe");
-const indexDateOfBirth = document.getElementById("indexDateOfBirth");
-const indexPhone = document.getElementById("indexPhone");
-const indexLocation = document.getElementById("indexLocation");
-const indexEmail = document.getElementById("indexEmail");
+
+
+
+    
 
 const resumeDisplay = document.getElementById('resume-display');
-const editDisplay = document.getElementById('edit-form');
 
-inputFieldsPd.forEach(inputFieldPd => {
-    inputFieldPd.addEventListener('input', updateResume);
-});
 
-    function updateResume(){
+function updateResume(){
+    const indexName = document.getElementById("indexName");
+    const indexLastName = document.getElementById("indexLastName");
+    const indexTitle = document.getElementById("indexTitle");
+    const indexAboutMe = document.getElementById("indexAboutMe");
+    const indexDateOfBirth = document.getElementById("indexDateOfBirth");
+    const indexPhone = document.getElementById("indexPhone");
+    const indexLocation = document.getElementById("indexLocation");
+    const indexEmail = document.getElementById("indexEmail");
+
+    const editDisplay = document.getElementById('edit-form');
+    const inputFieldsPd = document.querySelectorAll(".personal-details");
+
+    
 
     const valuesPd = Array.from(inputFieldsPd).map(input => input.value);
-    debugger;
+
     indexName.innerText = valuesPd[0];
     indexLastName.innerText = valuesPd[1];
     indexTitle.innerText = valuesPd[2];
@@ -669,12 +711,145 @@ inputFieldsPd.forEach(inputFieldPd => {
     indexPhone.innerText = valuesPd[6];
     indexAboutMe.innerHTML = valuesPd[7];
 
-    // resumeDisplay.innerHTML = updatedResume;
+    const gettedExperiences = document.querySelectorAll(".work-experiences");
+            let check1 = false;
+            let check2 = false;
+            let check3 = false;
+            let check4 = false;
+            let check5 = false;
+            const workExperiences = [];
+            for(let gettedExperience of gettedExperiences){
+                id= +removeTextBeforeHyphen(gettedExperience.id);
+                if(gettedExperience.id === `start-${id}`)
+                {
+                    startYear = gettedExperience.value.toString();
+                    check1 = true;
+                }
+                if(gettedExperience.id === `end-${id}`)
+                {
+                    endYear = gettedExperience.value.toString();
+                    check2 = true;
+                }
+                if(gettedExperience.id === `company-${id}`)
+                {
+                    company = gettedExperience.value.toString();
+                    check3 = true;
+                }
+                if(gettedExperience.id === `title-${id}`)
+                {
+                    title = gettedExperience.value.toString();
+                    check4 = true;
+                }
+                if(gettedExperience.id === `description-${id}`)
+                {
+                    description = gettedExperience.value.toString();
+                    check5 = true;
+                }
+                if(check1&&check2&&check3&&check4&&check5){
+                workExperiences.push({id, startYear, endYear, company, title, description});
+                check1 =false;
+                check2 =false;
+                check3 =false;
+                check4 =false;
+                check5 =false;
+                }
+            }
+
+            document.getElementById("indexWorkExperiences").innerHTML = createworkExperienceHtmlTags(workExperiences);
+
+            const gettedSocialMedias = document.querySelectorAll(".social-medias");
+            let check12 = false;
+            let check13 = false;
+            let check14 = false;
+            const socialMedias = [];
+            
+            for(let gettedSocialMedia of gettedSocialMedias){
+                id4= +removeTextBeforeHyphen(gettedSocialMedia.id);
+                if(gettedSocialMedia.id === `title-${id4}`)
+                {
+                    title = gettedSocialMedia.value.toString();
+                    check12 = true;
+                }
+                if(gettedSocialMedia.id === `text-${id4}`)
+                {
+                    text = gettedSocialMedia.value.toString();
+                    check13 = true;
+                }
+                if(gettedSocialMedia.id === `link-${id4}`)
+                {
+                    link = gettedSocialMedia.value.toString();
+                    check14 = true;
+                }
+                
+                if(check12&&check13&&check14){
+                    socialMedias.push({id:id4, title, text, link});
+                check12 =false;
+                check13 =false;
+                check14 =false;
+                }
+            }
+
+            document.getElementById("indexSocialMedias").innerHTML = createSocialMediaHtmlTags(socialMedias);
+
+            const gettedCertifications = document.querySelectorAll(".certifications");
+            let check15 = false;
+            let check16 = false;
+            const certifications = [];
+            
+            for(let gettedCertification of gettedCertifications){
+                
+                id5= +removeTextBeforeHyphen(gettedCertification.id);
+                if(gettedCertification.id === `title-${id5}`)
+                {
+                    title = gettedCertification.value.toString();
+                    check15 = true;
+                }
+                if(gettedCertification.id === `description-${id5}`)
+                {
+                    description = gettedCertification.value.toString();
+                    check16 = true;
+                }
+                
+                if(check15&&check16){
+                    certifications.push({id:id5, title, description});
+                    check15 =false;
+                    check16 =false;
+                }
+            }
+            document.getElementById("indexCertifications").innerHTML = createCertificationHtmlTags(certifications);
+
     resumeDisplay.classList.remove("hidden");
     resumeDisplay.classList.add("resume-display");
     editDisplay.classList.add("edit-form");
 
 }
+function createCertificationHtmlTags(certifications){
+    let text ="";
+    for(let certification of certifications){
+
+        text += `<div class="certification_item">
+        <h4 class="item_title">${certification.title}</h4>
+        <p class="description">${certification.description}</p>
+      </div>`;
+
+    }
+    
+    return text;
+}
+
+function createSocialMediaHtmlTags(socialMedias){
+
+    let text ="";
+    for(let socialMedia of socialMedias){
+        text +=`<a href="${socialMedia.link}" target="_blank" class="social_item">
+        <i data-feather="${socialMedia.title}"></i>
+        <span>${socialMedia.text}</span>
+      </a>`;
+    }
+
+    return text;
+}
+
 function setAndConvertDate(data){
     const date = new Date(data);   
     day =  date.getDate();
@@ -688,6 +863,20 @@ function setAndConvertDate(data){
     return dateString;
 }
 
+function createworkExperienceHtmlTags(workExperiences){
+    let text ="";
+    for(let workExperience of workExperiences){
+
+        text += `<div class="exp_item">
+          <p class="item_preTitle">${workExperience.startYear} - ${workExperience.endYear}</p>
+          <h4 class="item_title">${workExperience.company}</h4>
+          <p class="item_subtitle">${workExperience.title}</p>
+          <p class=" description">${workExperience.description}</p>
+        </div>`;
+    }
+    
+    return text;
+}
 
 // Sayfanın yüksekliğini alın
 const pageHeight = document.body.scrollHeight;
@@ -696,12 +885,11 @@ const pageHeight = document.body.scrollHeight;
 window.addEventListener('scroll', () => {
     // Sayfanın şu anki kaydırma pozisyonunu alın
     const scrollPosition = window.scrollY;
-    // İframe'i istediğiniz şekilde hareket ettirin
     // Örneğin, sayfanın yukarı kaydırılmasıyla iframe'i yukarı kaydırabilirsiniz
     // Burada sayfanın yukarıya kaydırılma ile ilgili bir kontrol sağlayabilirsiniz.
     // Örnek olarak:
     if(scrollPosition>250){
-        if (scrollPosition -980 < pageHeight) {
+        if (scrollPosition -400 < pageHeight) {
             resumeDisplay.style.transform = `translateY(${scrollPosition-200}px)`;
         }
     }
