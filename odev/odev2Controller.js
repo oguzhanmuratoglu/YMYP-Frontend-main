@@ -13,29 +13,13 @@ let id2 =1;
 let id3 =1;
 let id4 =1;
 let id5 =1;
+
 get();
 
 
-
-
-
-// async function get(){
-//     await axios.get("http://localhost:5000/api/get").then(res=>{
-//         MyData = res.data;
-
-//         setMyInformation(MyData.person);
-//         setMyWorkExperiences(MyData.workExperiences);
-//         setMyEducations(MyData.educations);
-//         setMyReferences(MyData.references);
-//         setMySocialMedias(MyData.socialMedias);
-//         setMyCertifications(MyData.certifications);
-
-//     });
-// }
-async function get() {
-    try {
-        const response = await axios.get("http://localhost:5000/api/get");
-        const MyData = response.data;
+function get(){
+    axios.get("http://localhost:5000/api/get").then(res=>{
+        MyData = res.data;
 
         setMyInformation(MyData.person);
         setMyWorkExperiences(MyData.workExperiences);
@@ -44,35 +28,10 @@ async function get() {
         setMySocialMedias(MyData.socialMedias);
         setMyCertifications(MyData.certifications);
 
-        const inputFieldsPd = document.querySelectorAll(".personal-details");
-        const inputFieldsWe = document.querySelectorAll(".work-experiences");
-        const inputFieldsSm = document.querySelectorAll(".social-medias");
-        const inputFieldsCe = document.querySelectorAll(".certifications");
-        const inputFieldsRe = document.querySelectorAll(".references");
-        const inputFieldsEd = document.querySelectorAll(".educations");
 
-        inputFieldsPd.forEach(inputFieldPd => {
-            inputFieldPd.addEventListener('input', updateResume);
-        });
-        inputFieldsWe.forEach(inputFieldWe => {
-        inputFieldWe.addEventListener('input', updateResume);
-        });
-        inputFieldsSm.forEach(inputFieldSm => {
-            inputFieldSm.addEventListener('input', updateResume);
-        });
-        inputFieldsCe.forEach(inputFieldCe => {
-            inputFieldCe.addEventListener('input', updateResume);
-        });
-        inputFieldsRe.forEach(inputFieldRe => {
-            inputFieldRe.addEventListener('input', updateResume);
-        });
-        inputFieldsEd.forEach(inputFieldEd => {
-            inputFieldEd.addEventListener('input', updateResume);
-        });
-    } catch (error) {
-        console.error("Veri alınırken bir hata oluştu: ", error);
-    }
+    });
 }
+
 
 function setMyInformation(person){
     document.getElementById("firstName").value = person.name;
@@ -124,29 +83,29 @@ function setMyInformation(person){
             text+=`<div id="work-experience-${workExperience.id}" class="fields experience">
             <div class="input-field">
                 <label>Start Date</label>
-                <input id="start-${workExperience.id}" class="work-experiences" value="${workExperience.startYear}"  type="text" placeholder="Enter your Start Date">
+                <input id="start-${workExperience.id}" onkeyup="updateResume()"  class="work-experiences" value="${workExperience.startYear}"  type="text" placeholder="Enter your Start Date">
             </div>
             <div class="input-field">
                 <label>End Date</label>
-                <input id="end-${workExperience.id}" class="work-experiences" value="${workExperience.endYear}" type="text" placeholder="Enter your End Date">
+                <input id="end-${workExperience.id}" onkeyup="updateResume()" class="work-experiences" value="${workExperience.endYear}" type="text" placeholder="Enter your End Date">
             </div>
             <div class="input-field">
                 <label>Company</label>
-                <input id="company-${workExperience.id}" class="work-experiences" value="${workExperience.company}" type="text" placeholder="Enter your Company">
+                <input id="company-${workExperience.id}" onkeyup="updateResume()" class="work-experiences" value="${workExperience.company}" type="text" placeholder="Enter your Company">
             </div>
             <div class="input-field">
                 <label>Title</label>
-                <input id="title-${workExperience.id}" class="work-experiences" value="${workExperience.title}" type="text" placeholder="Enter your Title">
+                <input id="title-${workExperience.id}" onkeyup="updateResume()" class="work-experiences" value="${workExperience.title}" type="text" placeholder="Enter your Title">
             </div>
             <div class="input-field">
                 <label>Description</label>
-                <input id="description-${workExperience.id}" class="work-experiences" value="${workExperience.description}" type="text" placeholder="Enter your Description">
+                <input id="description-${workExperience.id}" onkeyup="updateResume()" class="work-experiences" value="${workExperience.description}" type="text" placeholder="Enter your Description">
             </div>
             <button class="deleteButton" onclick="deleteExperinceDetail(${workExperience.id})">Çıkar -</button>
         </div>`;
         workExperienceId++;
         }
-
+        
         return text;
     }
 
@@ -156,23 +115,23 @@ function setMyInformation(person){
         `<div id="work-experience-${workExperienceId}" class="fields experience">
         <div class="input-field">
             <label>Start Date</label>
-            <input id="start-${workExperienceId}" class="work-experiences" type="text" placeholder="Enter your Start Date">
+            <input id="start-${workExperienceId}" onkeyup="updateResume()"  class="work-experiences" type="text" placeholder="Enter your Start Date">
         </div>
         <div class="input-field">
             <label>End Date</label>
-            <input id="end-${workExperienceId}" class="work-experiences" type="text" placeholder="Enter your End Date">
+            <input id="end-${workExperienceId}" onkeyup="updateResume()" class="work-experiences" type="text" placeholder="Enter your End Date">
         </div>
         <div class="input-field">
             <label>Company</label>
-            <input id="company-${workExperienceId}" class="work-experiences" type="text" placeholder="Enter your Company">
+            <input id="company-${workExperienceId}" onkeyup="updateResume()" class="work-experiences" type="text" placeholder="Enter your Company">
         </div>
         <div class="input-field">
             <label>Title</label>
-            <input id="title-${workExperienceId}" class="work-experiences" type="text" placeholder="Enter your Title">
+            <input id="title-${workExperienceId}" onkeyup="updateResume()" class="work-experiences" type="text" placeholder="Enter your Title">
         </div>
         <div class="input-field">
             <label>Description</label>
-            <input id="description-${workExperienceId}" class="work-experiences" type="text" placeholder="Enter your Description">
+            <input id="description-${workExperienceId}" onkeyup="updateResume()" class="work-experiences" type="text" placeholder="Enter your Description">
         </div>
         <button class="deleteButton" onclick="deleteExperinceDetail(${workExperienceId})">Çıkar -</button>
     </div>`;
@@ -180,6 +139,7 @@ function setMyInformation(person){
 
     function deleteExperinceDetail(id){
         document.getElementById(`work-experience-${id}`).remove();
+        document.getElementById(`work-${id}`).remove();
     }
 
     function setMyEducations(educations){
@@ -194,19 +154,19 @@ function setMyInformation(person){
             text+= ` <div id="education-${education.id}" class="fields experience">
             <div class="input-field">
                 <label>School Name</label>
-                <input id="schoolName-${education.id}" class="educations" value="${education.schoolName}" type="text" placeholder="Enter your School Name">
+                <input id="schoolName-${education.id}" onkeyup="updateResume()" class="educations" value="${education.schoolName}" type="text" placeholder="Enter your School Name">
             </div>
             <div class="input-field">
                 <label>Location</label>
-                <input id="location-${education.id}" type="text" class="educations" value="${education.location}" placeholder="Enter your School Location">
+                <input id="location-${education.id}" onkeyup="updateResume()" type="text" class="educations" value="${education.location}" placeholder="Enter your School Location">
             </div>
             <div class="input-field">
                 <label>Date</label>
-                <input id="date-${education.id}" type="text" class="educations" value="${education.date}" placeholder="Exp:  2017-2022">
+                <input id="date-${education.id}" onkeyup="updateResume()" type="text" class="educations" value="${education.date}" placeholder="Exp:  2017-2022">
             </div>
             <div class="input-field">
                 <label>Gap</label>
-                <input id="gap-${education.id}" type="text" class="educations" value="${education.gap}" placeholder="Enter your GAP SCORE">
+                <input id="gap-${education.id}" onkeyup="updateResume()" type="text" class="educations" value="${education.gap}" placeholder="Enter your GAP SCORE">
             </div>
             <button class="deleteButton" onclick="deleteEducationDetail(${education.id})">Çıkar +</button>
         </div>`;
@@ -221,19 +181,19 @@ function setMyInformation(person){
         ` <div id="education-${educationId}" class="fields experience">
         <div class="input-field">
             <label>School Name</label>
-            <input id="schoolName-${educationId}" class="educations" type="text" placeholder="Enter your School Name">
+            <input id="schoolName-${educationId}" onkeyup="updateResume()" class="educations" type="text" placeholder="Enter your School Name">
         </div>
         <div class="input-field">
             <label>Location</label>
-            <input id="location-${educationId}" type="text" class="educations" placeholder="Enter your School Location">
+            <input id="location-${educationId}" onkeyup="updateResume()" type="text" class="educations" placeholder="Enter your School Location">
         </div>
         <div class="input-field">
             <label>Date</label>
-            <input id="date-${educationId}" type="text" class="educations" placeholder="Exp:  2017-2022">
+            <input id="date-${educationId}" onkeyup="updateResume()" type="text" class="educations" placeholder="Exp:  2017-2022">
         </div>
         <div class="input-field">
             <label>Gap</label>
-            <input id="gap-${educationId}" type="text" class="educations" placeholder="Enter your GAP SCORE">
+            <input id="gap-${educationId}" onkeyup="updateResume()" type="text" class="educations" placeholder="Enter your GAP SCORE">
         </div>
         <button class="deleteButton" onclick="deleteEducationDetail(${educationId})">Çıkar +</button>
     </div>`;
@@ -241,6 +201,7 @@ function setMyInformation(person){
 
     function deleteEducationDetail(ìd){
         document.getElementById(`education-${ìd}`).remove();
+        document.getElementById(`ed-${ìd}`).remove();
     }
 
 
@@ -251,16 +212,17 @@ function setMyInformation(person){
         let text ="";
 
         for(let reference of references){
+            
             text+=`<div id="reference-${reference.id}" class="fields experience">
             <div class="input-field">
                 <label>Reference Name</label>
-                <input id="referanceName-${reference.id}" class="references"  type="text" value="${reference.referanceName}" placeholder="Enter your reference name">
+                <input id="referanceName-${reference.id}" onkeyup="updateResume()" class="references"  type="text" value="${reference.referanceName}" placeholder="Enter your reference name">
             </div>
             <div class="input-field">
                 <label>Description</label>
-                <input id="description-${reference.id}" type="text" class="references" value="${reference.description}"  placeholder="Enter your Reference Description">
+                <input id="description-${reference.id}" onkeyup="updateResume()" type="text" class="references" value="${reference.description}"  placeholder="Enter your Reference Description">
             </div>
-            <button class="deleteButton" onclick="deleteReferanceDetail(${reference.id})">Çıkar +</button>
+            <button class="deleteButton" onkeyup="updateResume()" onclick="deleteReferanceDetail(${reference.id})">Çıkar +</button>
         </div>`;
         referenceId++;
         }
@@ -274,11 +236,11 @@ function setMyInformation(person){
         ` <div id="reference-${referenceId}" class="fields experience">
         <div class="input-field">
             <label>Reference Name</label>
-            <input id="referanceName-${referenceId}" class="references"  type="text" placeholder="Enter your reference name">
+            <input id="referanceName-${referenceId}" onkeyup="updateResume()" class="references"  type="text" placeholder="Enter your reference name">
         </div>
         <div class="input-field">
             <label>Description</label>
-            <input id="description-${referenceId}" class="references" type="text" placeholder="Enter your Reference Description">
+            <input id="description-${referenceId}" onkeyup="updateResume()" class="references" type="text" placeholder="Enter your Reference Description">
         </div>
         <button class="deleteButton" onclick="deleteReferanceDetail(${referenceId})">Çıkar +</button>
     </div>`;
@@ -286,6 +248,7 @@ function setMyInformation(person){
 
     function deleteReferanceDetail(ìd){
         document.getElementById(`reference-${ìd}`).remove();
+        document.getElementById(`re-${ìd}`).remove();
     }
 
     function setMySocialMedias(socialMedias){
@@ -298,15 +261,15 @@ function setMyInformation(person){
             text+=`<div id="socialMedia-${socialMedia.id}" class="fields experience">
             <div class="input-field">
                 <label>Title</label>
-                <input class="social-medias" id="title-${socialMedia.id}" type="text" value="${socialMedia.title}" placeholder="Exp: data-feather='linkedin' linkedin is a title">
+                <input class="social-medias" onkeyup="updateResume()" id="title-${socialMedia.id}" type="text" value="${socialMedia.title}" placeholder="Exp: data-feather='linkedin' linkedin is a title">
             </div>
             <div class="input-field">
                 <label>Text</label>
-                <input class="social-medias" id="text-${socialMedia.id}" value="${socialMedia.text}" type="text" placeholder="Exp: /MyLinkedIn">
+                <input class="social-medias" onkeyup="updateResume()" id="text-${socialMedia.id}" value="${socialMedia.text}" type="text" placeholder="Exp: /MyLinkedIn">
             </div>
             <div class="input-field">
                 <label>Link</label>
-                <input class="social-medias" id="link-${socialMedia.id}" value="${socialMedia.link}" type="text" placeholder="Enter your socail media link">
+                <input class="social-medias" onkeyup="updateResume()" id="link-${socialMedia.id}" value="${socialMedia.link}" type="text" placeholder="Enter your socail media link">
             </div>
             <button class="deleteButton" onclick="deleteSocialMediaDetail(${socialMedia.id})">Çıkar +</button>
         </div>`;
@@ -320,26 +283,28 @@ function setMyInformation(person){
         `<div id="socialMedia-${socialMediaId}" class="fields experience">
         <div class="input-field">
             <label>Title</label>
-            <input class="social-medias" id="title-${socialMediaId}" type="text" placeholder="Exp: data-feather='linkedin' linkedin is a title">
+            <input class="social-medias" onkeyup="updateResume()" id="title-${socialMediaId}" type="text" placeholder="Exp: data-feather='linkedin' linkedin is a title">
             <div id="title-${socialMediaId}-validation" class="hide error">Bu alanı doldurmak zorundasın!</div>
         </div>
         <div class="input-field">
             <label>Text</label>
-            <input class="social-medias" id="text-${socialMediaId}" type="text" placeholder="Exp: /MyLinkedIn">
+            <input class="social-medias" onkeyup="updateResume()" id="text-${socialMediaId}" type="text" placeholder="Exp: /MyLinkedIn">
         </div>
         <div class="input-field">
             <label>Link</label>
-            <input class="social-medias" id="link-${socialMediaId}" type="text" placeholder="Enter your socail media link">
+            <input class="social-medias" onkeyup="updateResume()" id="link-${socialMediaId}" type="text" placeholder="Enter your socail media link">
         </div>
         <button class="deleteButton" onclick="deleteSocialMediaDetail(${socialMediaId})">Çıkar +</button>
     </div>`;
     }
     function deleteSocialMediaDetail(ìd){
         document.getElementById(`socialMedia-${ìd}`).remove();
+        document.getElementById(`sm-${ìd}`).remove();
     }
 
     function setMyCertifications(certifications){
         document.getElementById("certification").innerHTML = createCertificationsHtmlTags(certifications);
+        document.getElementById(`ce-${ìd}`).remove();
     }
 
     function createCertificationsHtmlTags(certifications){
@@ -349,11 +314,11 @@ function setMyInformation(person){
             text+=`<div id="certification-${certification.id}" class="fields experience">
             <div class="input-field">
                 <label>Title</label>
-                <input id="title-${certification.id}" class="certifications" type="text" value="${certification.title}" placeholder="Enter your certification title">
+                <input id="title-${certification.id}" onkeyup="updateResume()" class="certifications" type="text" value="${certification.title}" placeholder="Enter your certification title">
             </div>
             <div class="input-field">
                 <label>Description</label>
-                <input id="description-${certification.id}" class="certifications" value="${certification.description}" type="text" placeholder="Enter a description">
+                <input id="description-${certification.id}" onkeyup="updateResume()" class="certifications" value="${certification.description}" type="text" placeholder="Enter a description">
             </div>
             <button class="deleteButton" onclick="deleteCertificationDetail(${certification.id})">Çıkar +</button>
         </div>`;
@@ -367,11 +332,11 @@ function setMyInformation(person){
         document.getElementById("certifications").innerHTML+= `<div id="certification-${certificationId}" class="fields experience">
         <div class="input-field">
             <label>Title</label>
-            <input id="title-${certificationId}" class="certifications" type="text" placeholder="Enter your certification title">
+            <input id="title-${certificationId}" onkeyup="updateResume()" class="certifications" type="text" placeholder="Enter your certification title">
         </div>
         <div class="input-field">
             <label>Description</label>
-            <input id="description-${certificationId}" class="certifications" type="text" placeholder="Enter a description">
+            <input id="description-${certificationId}" onkeyup="updateResume()" class="certifications" type="text" placeholder="Enter a description">
         </div>
         <button class="deleteButton" onclick="deleteCertificationDetail(${certificationId})">Çıkar +</button>
     </div>`;
@@ -379,6 +344,7 @@ function setMyInformation(person){
 
     function deleteCertificationDetail(ìd){
         document.getElementById(`certification-${ìd}`).remove();
+        document.getElementById(`ce-${ìd}`).remove();
     }
 
 
@@ -675,17 +641,12 @@ function removeTextBeforeHyphen(inputString) {
     return result;
 }
 
-
-
-
-
-
-    
-
 const resumeDisplay = document.getElementById('resume-display');
 
 
 function updateResume(){
+
+
     const indexName = document.getElementById("indexName");
     const indexLastName = document.getElementById("indexLastName");
     const indexTitle = document.getElementById("indexTitle");
@@ -755,7 +716,7 @@ function updateResume(){
                 }
             }
 
-            document.getElementById("indexWorkExperiences").innerHTML = createworkExperienceHtmlTags(workExperiences);
+            document.getElementById("indexWorkExperiences").innerHTML = createworkExperienceHtmlTagsForResumeDisplay(workExperiences);
 
             const gettedSocialMedias = document.querySelectorAll(".social-medias");
             let check12 = false;
@@ -789,7 +750,7 @@ function updateResume(){
                 }
             }
 
-            document.getElementById("indexSocialMedias").innerHTML = createSocialMediaHtmlTags(socialMedias);
+            document.getElementById("indexSocialMedias").innerHTML = createSocialMediaHtmlTagsForResumeDisplay(socialMedias);
 
             const gettedCertifications = document.querySelectorAll(".certifications");
             let check15 = false;
@@ -816,18 +777,124 @@ function updateResume(){
                     check16 =false;
                 }
             }
-            document.getElementById("indexCertifications").innerHTML = createCertificationHtmlTags(certifications);
+            document.getElementById("indexCertifications").innerHTML = createCertificationHtmlTagsForResumeDisplay(certifications);
+
+
+            const gettedReferences = document.querySelectorAll(".references");
+            let check10 = false;
+            let check11 = false;
+            const references = [];
+            
+            for(let gettedReference of gettedReferences){
+                id3= +removeTextBeforeHyphen(gettedReference.id);
+                if(gettedReference.id === `referanceName-${id3}`)
+                {
+                    referanceName = gettedReference.value.toString();
+                    check10 = true;
+                }
+                if(gettedReference.id === `description-${id3}`)
+                {
+                    description = gettedReference.value.toString();
+                    check11 = true;
+                }
+                
+                if(check10&&check11){
+                    references.push({id:id3, referanceName, description});
+                check10 =false;
+                check11 =false;
+                }
+            }
+            
+            document.getElementById("indexReferences").innerHTML = createReferenceHtmlTagsForResumeDisplay(references);
+
+
+            const gettedEducations = document.querySelectorAll(".educations");
+            let check6 = false;
+            let check7 = false;
+            let check8 = false;
+            let check9 = false;
+            let location = "";
+            const educations = [];
+            
+            for(let gettedEducation of gettedEducations){
+                id2= +removeTextBeforeHyphen(gettedEducation.id);
+                if(gettedEducation.id === `schoolName-${id2}`)
+                {
+                    schoolName = gettedEducation.value.toString();
+                    check6 = true;
+                }
+                if(gettedEducation.id === `location-${id2}`)
+                {
+                    location = gettedEducation.value.toString();
+                    check7 = true;
+                }
+                if(gettedEducation.id === `date-${id2}`)
+                {
+                    date = gettedEducation.value.toString();
+                    check8 = true;
+                }
+                if(gettedEducation.id === `gap-${id2}`)
+                {
+                    gap = gettedEducation.value.toString();
+                    check9 = true;
+                }
+                
+                if(check6&&check7&&check8&&check9){
+                    educations.push({id:id2, schoolName, location, date, gap});
+                check6 =false;
+                check7 =false;
+                check8 =false;
+                check9 =false;
+                }
+            }
+
+            document.getElementById("indexEducations").innerHTML = createEducationHtmlTagsForResumeDisplay(educations);
 
     resumeDisplay.classList.remove("hidden");
     resumeDisplay.classList.add("resume-display");
     editDisplay.classList.add("edit-form");
 
 }
-function createCertificationHtmlTags(certifications){
+
+function createEducationHtmlTagsForResumeDisplay(educations){
+    let text ="";
+    for(let education of educations){
+
+        text += `<div class="edu_item" id="ed-${id}">
+        <p class="item_preTitle">${education.date}</p>
+        <h4 class="item_title">${education.location}</h4>
+        <p class="item_subtitle">
+        ${education.schoolName}
+        </p>
+        <p class="item_title">
+        ${education.gap}
+        </p>
+      </div>`;
+
+    }
+    
+    return text;
+}
+
+function createReferenceHtmlTagsForResumeDisplay(references){
+    let text ="";
+    for(let reference of references){
+
+        text += `<div class="ref_item" id="re-${reference.id}">
+        <h4 class="ref_name">${reference.name}</h4>
+        <p class="description">${reference.description}</p>
+      </div>`;
+
+    }
+    
+    return text;
+}
+
+function createCertificationHtmlTagsForResumeDisplay(certifications){
     let text ="";
     for(let certification of certifications){
 
-        text += `<div class="certification_item">
+        text += `<div class="certification_item" id="ce-${certification.id}">
         <h4 class="item_title">${certification.title}</h4>
         <p class="description">${certification.description}</p>
       </div>`;
@@ -837,16 +904,31 @@ function createCertificationHtmlTags(certifications){
     return text;
 }
 
-function createSocialMediaHtmlTags(socialMedias){
+function createSocialMediaHtmlTagsForResumeDisplay(socialMedias){
 
     let text ="";
     for(let socialMedia of socialMedias){
-        text +=`<a href="${socialMedia.link}" target="_blank" class="social_item">
+        text +=`<a href="${socialMedia.link}" id="sm-${socialMedia.id}" target="_blank" class="social_item">
         <i data-feather="${socialMedia.title}"></i>
         <span>${socialMedia.text}</span>
       </a>`;
     }
 
+    return text;
+}
+
+function createworkExperienceHtmlTagsForResumeDisplay(workExperiences){
+    let text ="";
+    for(let workExperience of workExperiences){
+
+        text += `<div class="exp_item" id="work-${workExperience.id}">
+          <p class="item_preTitle">${workExperience.startYear} - ${workExperience.endYear}</p>
+          <h4 class="item_title">${workExperience.company}</h4>
+          <p class="item_subtitle">${workExperience.title}</p>
+          <p class=" description">${workExperience.description}</p>
+        </div>`;
+    }
+    
     return text;
 }
 
@@ -863,20 +945,7 @@ function setAndConvertDate(data){
     return dateString;
 }
 
-function createworkExperienceHtmlTags(workExperiences){
-    let text ="";
-    for(let workExperience of workExperiences){
 
-        text += `<div class="exp_item">
-          <p class="item_preTitle">${workExperience.startYear} - ${workExperience.endYear}</p>
-          <h4 class="item_title">${workExperience.company}</h4>
-          <p class="item_subtitle">${workExperience.title}</p>
-          <p class=" description">${workExperience.description}</p>
-        </div>`;
-    }
-    
-    return text;
-}
 
 // Sayfanın yüksekliğini alın
 const pageHeight = document.body.scrollHeight;
