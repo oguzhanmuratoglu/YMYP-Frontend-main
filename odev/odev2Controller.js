@@ -8,11 +8,13 @@ let educationId = 0;
 let referenceId = 0;
 let socialMediaId=0;
 let certificationId=0;
+let skillId =0;
 let id =1;
 let id2 =1;
 let id3 =1;
 let id4 =1;
 let id5 =1;
+let id6 =1;
 
 get();
 
@@ -22,6 +24,7 @@ function get(){
         MyData = res.data;
 
         setMyInformation(MyData.person);
+        setMySkills(MyData.skills);
         setMyWorkExperiences(MyData.workExperiences);
         setMyEducations(MyData.educations);
         setMyReferences(MyData.references);
@@ -31,6 +34,8 @@ function get(){
 
     });
 }
+
+
 
 
 function setMyInformation(person){
@@ -70,6 +75,53 @@ function setMyInformation(person){
 
 //     return stringPhoneNumber;
 // }
+
+function setMySkills(skills){
+    document.getElementById("skill").innerHTML=createSkillHtmlTags(skills);
+}
+
+function addSkill(){
+    skillId++;
+    document.getElementById("skills").innerHTML+=
+    `<div id="skill-${skillId}" class="fields experience">
+    <div class="input-field">
+        <label>Title</label>
+        <input id="title-${skillId}" onkeyup="updateResume()"  class="skillss"   type="text" placeholder="Enter your skill title">
+    </div>
+    <div class="input-field">
+        <label>Rate</label>
+        <input id="rate-${skillId}" onkeyup="updateResume()" class="skillss"  type="number" placeholder="Enter your skill rate">
+    </div>
+    <button class="deleteButton" onclick="deleteSkillDetail(${skillId})">Çıkar -</button>
+</div>`;
+}
+
+function createSkillHtmlTags(skills){
+    let text = "";
+
+        for(let skill of skills){
+            text+=`<div id="skill-${skill.id}" class="fields experience">
+            <div class="input-field">
+                <label>Title</label>
+                <input id="title-${skill.id}" onkeyup="updateResume()"  class="skillss" value="${skill.title}"  type="text" placeholder="Enter your skill Title">
+            </div>
+            <div class="input-field">
+                <label>Rate</label>
+                <input id="rate-${skill.id}" onkeyup="updateResume()" class="skillss" value="${skill.rate}" type="number" placeholder="Enter your skill rate">
+            </div>
+            <button class="deleteButton" onclick="deleteSkillDetail(${skill.id})">Çıkar -</button>
+        </div>`;
+        skillId++;
+        }
+        
+        return text;
+}
+
+function deleteSkillDetail(id){
+    document.getElementById(`skill-${id}`).remove();
+    document.getElementById(`sk-${ìd}`).remove();
+
+}
 
     function setMyWorkExperiences(workExperiences){
         document.getElementById("workExperiences").innerHTML=createWorkExperienceHtmlTags(workExperiences);
@@ -168,7 +220,7 @@ function setMyInformation(person){
                 <label>Gap</label>
                 <input id="gap-${education.id}" onkeyup="updateResume()" type="text" class="educations" value="${education.gap}" placeholder="Enter your GAP SCORE">
             </div>
-            <button class="deleteButton" onclick="deleteEducationDetail(${education.id})">Çıkar +</button>
+            <button class="deleteButton" onclick="deleteEducationDetail(${education.id})">Çıkar -</button>
         </div>`;
         educationId++;
         }
@@ -195,7 +247,7 @@ function setMyInformation(person){
             <label>Gap</label>
             <input id="gap-${educationId}" onkeyup="updateResume()" type="text" class="educations" placeholder="Enter your GAP SCORE">
         </div>
-        <button class="deleteButton" onclick="deleteEducationDetail(${educationId})">Çıkar +</button>
+        <button class="deleteButton" onclick="deleteEducationDetail(${educationId})">Çıkar -</button>
     </div>`;
     }
 
@@ -212,7 +264,7 @@ function setMyInformation(person){
         let text ="";
 
         for(let reference of references){
-            
+
             text+=`<div id="reference-${reference.id}" class="fields experience">
             <div class="input-field">
                 <label>Reference Name</label>
@@ -222,7 +274,7 @@ function setMyInformation(person){
                 <label>Description</label>
                 <input id="description-${reference.id}" onkeyup="updateResume()" type="text" class="references" value="${reference.description}"  placeholder="Enter your Reference Description">
             </div>
-            <button class="deleteButton" onkeyup="updateResume()" onclick="deleteReferanceDetail(${reference.id})">Çıkar +</button>
+            <button class="deleteButton" onkeyup="updateResume()" onclick="deleteReferanceDetail(${reference.id})">Çıkar -</button>
         </div>`;
         referenceId++;
         }
@@ -242,7 +294,7 @@ function setMyInformation(person){
             <label>Description</label>
             <input id="description-${referenceId}" onkeyup="updateResume()" class="references" type="text" placeholder="Enter your Reference Description">
         </div>
-        <button class="deleteButton" onclick="deleteReferanceDetail(${referenceId})">Çıkar +</button>
+        <button class="deleteButton" onclick="deleteReferanceDetail(${referenceId})">Çıkar -</button>
     </div>`;
     }
 
@@ -271,7 +323,7 @@ function setMyInformation(person){
                 <label>Link</label>
                 <input class="social-medias" onkeyup="updateResume()" id="link-${socialMedia.id}" value="${socialMedia.link}" type="text" placeholder="Enter your socail media link">
             </div>
-            <button class="deleteButton" onclick="deleteSocialMediaDetail(${socialMedia.id})">Çıkar +</button>
+            <button class="deleteButton" onclick="deleteSocialMediaDetail(${socialMedia.id})">Çıkar -</button>
         </div>`;
             socialMediaId++;
         }
@@ -294,7 +346,7 @@ function setMyInformation(person){
             <label>Link</label>
             <input class="social-medias" onkeyup="updateResume()" id="link-${socialMediaId}" type="text" placeholder="Enter your socail media link">
         </div>
-        <button class="deleteButton" onclick="deleteSocialMediaDetail(${socialMediaId})">Çıkar +</button>
+        <button class="deleteButton" onclick="deleteSocialMediaDetail(${socialMediaId})">Çıkar -</button>
     </div>`;
     }
     function deleteSocialMediaDetail(ìd){
@@ -320,7 +372,7 @@ function setMyInformation(person){
                 <label>Description</label>
                 <input id="description-${certification.id}" onkeyup="updateResume()" class="certifications" value="${certification.description}" type="text" placeholder="Enter a description">
             </div>
-            <button class="deleteButton" onclick="deleteCertificationDetail(${certification.id})">Çıkar +</button>
+            <button class="deleteButton" onclick="deleteCertificationDetail(${certification.id})">Çıkar -</button>
         </div>`;
             certificationId++;
         }
@@ -338,7 +390,7 @@ function setMyInformation(person){
             <label>Description</label>
             <input id="description-${certificationId}" onkeyup="updateResume()" class="certifications" type="text" placeholder="Enter a description">
         </div>
-        <button class="deleteButton" onclick="deleteCertificationDetail(${certificationId})">Çıkar +</button>
+        <button class="deleteButton" onclick="deleteCertificationDetail(${certificationId})">Çıkar -</button>
     </div>`;
     }
 
@@ -350,6 +402,7 @@ function setMyInformation(person){
 
     function updateAllResumeDetails(){
         const workExperiencesCheck = updateWorkExperiencesCheck();
+        const skillsCheck = updateSkillsCheck();
         const personalDetailsCheck = updatePersonalDetailsCheck();
         const certificationsCheck = updateCertificationsCheck();
         const educationsCheck = updateEducationsCheck();
@@ -357,7 +410,7 @@ function setMyInformation(person){
         const referencesCheck = updateReferencesCheck();
 
 
-        if(!workExperiencesCheck || !personalDetailsCheck || !certificationsCheck || !educationsCheck || !socialMediasCheck || !referencesCheck)
+        if(!workExperiencesCheck || !skillsCheck || !personalDetailsCheck || !certificationsCheck || !educationsCheck || !socialMediasCheck || !referencesCheck)
         {
             alert("Tüm alanları doldurmalısınız!");
             return;
@@ -379,6 +432,15 @@ function setMyInformation(person){
         const workExperiences = document.querySelectorAll(".work-experiences");
         for(let workExperience of workExperiences){
             if(!workExperience.value){
+                return false;
+            }
+        }
+        return true;
+    }
+    function updateSkillsCheck(){
+        const skills = document.querySelectorAll(".skillss");
+        for(let skill of skills){
+            if(!skill.value){
                 return false;
             }
         }
@@ -470,6 +532,29 @@ function setMyInformation(person){
                 check12 =false;
                 check13 =false;
                 check14 =false;
+                }
+            }
+
+            const gettedSkills = document.querySelectorAll(".skillss");
+            let check17 = false;
+            let check18 = false;
+            const skills = [];
+            for(let gettedSkill of gettedSkills){
+                id6= +removeTextBeforeHyphen(gettedSkill.id);
+                if(gettedSkill.id === `title-${id6}`)
+                {
+                    title = gettedSkill.value.toString();
+                    check17 = true;
+                }
+                if(gettedSkill.id === `rate-${id6}`)
+                {
+                    rate = gettedSkill.value.toString();
+                    check18 = true;
+                }
+                if(check17&&check18){
+                skills.push({id:id6, title, rate});
+                check17 =false;
+                check18 =false;
                 }
             }
 
@@ -609,6 +694,7 @@ function setMyInformation(person){
             }
             UpdatedMyData = {
                 person: person,
+                skills : skills,
                 socialMedias: socialMedias,
                 workExperiences : workExperiences,
                 educations : educations,
@@ -850,10 +936,48 @@ function updateResume(){
 
             document.getElementById("indexEducations").innerHTML = createEducationHtmlTagsForResumeDisplay(educations);
 
+            const gettedSkills = document.querySelectorAll(".skillss");
+            let check17 = false;
+            let check18 = false;
+            const skills = [];
+            for(let gettedSkill of gettedSkills){
+                id6= +removeTextBeforeHyphen(gettedSkill.id);
+                if(gettedSkill.id === `title-${id6}`)
+                {
+                    title = gettedSkill.value.toString();
+                    check17 = true;
+                }
+                if(gettedSkill.id === `rate-${id6}`)
+                {
+                    rate = gettedSkill.value.toString();
+                    check18 = true;
+                }
+                if(check17&&check18){
+                skills.push({id:id6, title, rate});
+                check17 =false;
+                check18 =false;
+                }
+            }
+            debugger;
+            document.getElementById("indexSkills").innerHTML = createSkillHtmlTagsForResumeDisplay(skills);
+
     resumeDisplay.classList.remove("hidden");
     resumeDisplay.classList.add("resume-display");
     editDisplay.classList.add("edit-form");
 
+}
+
+function createSkillHtmlTagsForResumeDisplay(skills){
+    let text ="";
+    for(skill of skills){
+        text+=`<div class="skill" id="sk-${skill.id}">
+        <div class="skill-name">${skill.title}</div>
+        <div class="skill-bar">
+          <div class="skill-per" per="${skill.rate}%" style="max-width:${skill.rate}%"></div>
+        </div>
+      </div>`;
+    }
+    return text;
 }
 
 function createEducationHtmlTagsForResumeDisplay(educations){
@@ -881,7 +1005,7 @@ function createReferenceHtmlTagsForResumeDisplay(references){
     for(let reference of references){
 
         text += `<div class="ref_item" id="re-${reference.id}">
-        <h4 class="ref_name">${reference.name}</h4>
+        <h4 class="item_title">${reference.referanceName}</h4>
         <p class="description">${reference.description}</p>
       </div>`;
 
@@ -945,6 +1069,9 @@ function setAndConvertDate(data){
     return dateString;
 }
 
+function reload(){
+    window.location.reload();
+}
 
 
 // Sayfanın yüksekliğini alın
@@ -963,6 +1090,8 @@ window.addEventListener('scroll', () => {
         }
     }
 });
+
+
 
 
 

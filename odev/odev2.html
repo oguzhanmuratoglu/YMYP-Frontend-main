@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Resume Editor</title>
+    <title>Resume Editor</title>
     <link rel="stylesheet" href="odev2.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.0/axios.min.js"></script>
 </head>
@@ -30,11 +30,10 @@
             </li>
         </ul>
     </nav>
-
-        <div id="edit-form">
+        <div id="edit-form" >
             <div class="container">
 
-        <header>Admin Panel</header>
+        <header>Resume Editor</header>
 
             <div class="form">
                 <div class="details personal">
@@ -87,7 +86,16 @@
                     </div>
                 </div>
 
-                <div id="experience-field" class="experiences">
+                <div id="experience-field" class="experiences" >
+                  <div class="title-style">
+                      <span class="title">Skills</span>
+                  <button class="add-form" onclick="addSkill()">Ekle +</button>
+                  </div>
+                      <div id="skill"  ></div>
+                      <div id="skills"></div>
+              </div>
+
+                <div id="experience-field" class="experiences" >
                     <div class="title-style">
                         <span class="title">Experiences</span>
                     <button class="add-form" onclick="addworkExperiences()">Ekle +</button>
@@ -135,35 +143,27 @@
                         <div id="certification"></div>
                         <div id="certifications"></div>
                 </div>
-
-
-
-                <div id="skills-field" class="skills">
-                    <span class="title">Skills</span>
-                    <button class="add-form" onclick="addSkillsField()">Ekle (+)</button>
-
-                    
-                </div>
-                <div>
-                    <button class="add-form" onclick="updateAllResumeDetails();">Update</button>
+                <div class="end">
+                    <button class="update" onclick="updateAllResumeDetails();">Update</button>
+                    <button class="cancel" onclick="reload();">Cancel</button>
                 </div> 
             </div>
             
             </div>
         </div>
 
-        
+ 
         <div id="resume-display" class="hidden">
             <div class="container">
                 <div class="profile">
-                  <div class="profile_container">
+                  <div id="profile_container" class="profile_container">
                     <div class="profile_profileImg">
                       <img id="img" src="yg.jpg">
                     </div>
                     <div>
                       <h1 class="profile_name">
                         <span id="indexName" class="profile_name_firstName"></span>
-                        <span id="indexLastName" class="profile_name_lastName"></span>
+                        <span id="indexLastName"  class="profile_name_lastName"></span>
                       </h1>
                       <p id="indexTitle" class="profile_title"></p>
                       <p id="indexAboutMe" class="description profile_description">asdads</p>
@@ -174,13 +174,7 @@
                 <div class="group-1">
                   <div class="skills">
                     <h3 class="title">Skills</h3>
-                    <ul class="skills_list description">
-                      <li>JavaScript</li>
-                      <li>PHP & Wordpress</li>
-                      <li>HTML CSS</li>
-                      <li>React JS</li>
-                      <li>MERN STACK</li>
-                    </ul>
+                      <div id="indexSkills" class="sub-skills"></div>
                   </div>
                   <div class="ref">
                     <h3 class="title">Reference</h3>

@@ -8,6 +8,7 @@ function get(){
     axios.get("http://localhost:5000/api/get").then(res=>{
         MyData = res.data;
         setMyInformation(MyData.person);
+        setMySkills(MyData.skills);
         setMySocialMedias(MyData.socialMedias);
         setMyworkExperiences(MyData.workExperiences);
         setMyEducations(MyData.educations);
@@ -16,7 +17,23 @@ function get(){
     });
 }
 
+function setMySkills(skills){
+    document.getElementById("skills").innerHTML=createSkillHtmlTags(skills);
+}
+function createSkillHtmlTags(skills){
+    let text = "";
 
+    for(let skill of skills){
+
+        text+=`<div class="skill">
+        <div class="skill-name">${skill.title}</div>
+        <div class="skill-bar">
+          <div class="skill-per" per="${skill.rate}%" style="max-width:${skill.rate}%"></div>
+        </div>
+      </div>`;
+    }
+    return text;
+}
 function setMyInformation(person){
 
     document.getElementById("name").innerText = person.name;
@@ -71,7 +88,7 @@ function createReferenceHtmlTags(references){
     for(let reference of references){
 
         text += `<div class="ref_item">
-        <h4 class="ref_name">${reference.name}</h4>
+        <h4 class="item_title">${reference.referanceName}</h4>
         <p class="description">${reference.description}</p>
       </div>`;
 

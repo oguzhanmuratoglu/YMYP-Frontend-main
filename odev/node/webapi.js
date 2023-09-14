@@ -123,7 +123,7 @@ let references = [
     },
     {
         id : 2,
-        name: "Caner Mollaoğlu",
+        referanceName: "Caner Mollaoğlu",
         description : "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Adipisci"
     },
 ]

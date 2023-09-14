@@ -151,6 +151,7 @@ body{
     box-shadow: 3px 3px 20px rgba(0, 0, 0, .5);
     cursor: pointer;
 }
+
 .remove-form{
     color: white;
     display: none;
@@ -233,7 +234,7 @@ body{
 .title-style{
     display: flex;
     justify-content: space-between;
-    padding-right: 10%;
+    padding-right: 3.5%;
 }
 .experience{
     border-bottom: 2px solid #1f407a;
@@ -295,6 +296,7 @@ body{
     background-color: #4070f4;
     transition: all 0.3s linear;
     cursor: pointer;
+    box-shadow: 3px 3px 20px rgba(0, 0, 0, .5);
 }
 
 .container .deleteButton{
@@ -311,12 +313,10 @@ body{
     margin: 25px 0;
     background-color: #cc2923;
     transition: all 0.3s linear;
+    box-shadow: 3px 3px 20px rgba(0, 0, 0, .5);
     cursor: pointer;
 }
 
-#saveBtn{
-    margin-top: 80px;
-}
 
 .container .btnText{
     font-size: 14px;
@@ -337,7 +337,18 @@ body{
     display: flex;
     float: left;
     width: 50%;
+
+    .container{
+        position: relative;
+        border-radius: 10px;
+        padding: 30px;
+        margin: 80px 0px;
+        background-color: #fff;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    }
 }
+
+
 .resume-display {
     display: flex;
     float: left;
@@ -350,15 +361,72 @@ body{
         font-size: 2rem;
         text-transform: uppercase;
     }
+    .skills{
+        display: flex;
+        justify-content: center;
+        background: transparent;
+        font-family: "Ubuntu", sans-serif;
+        flex-direction: column;
+      
+      
+      .skill-name{
+        font-size: 15px;
+        font-weight: 700;
+        color: #f1f1f1;
+        text-transform: uppercase;
+        margin: 20px 0;
+      }
+      
+      .skill-bar{
+        height: 14px;
+        background: #fffdfd !important;
+        border-radius: 3px;
+      }
+      
+      .skill-per{
+        height: 14px;
+        background: #8da215;
+        border-radius: 3px;
+        position: relative;
+        animation: fillBars 2.5s 1;
+      }
+      
+      .skill-per::before{
+        content: attr(per);
+        position: absolute;
+        padding: 4px 6px;
+        background: #20498a;
+        border-radius: 4px;
+        font-size: 12px;
+        top: -35px;
+        right: 0;
+        transform: translateX(50%);
+      }
+      
+      .skill-per::after{
+        content: "";
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background: #20498a;
+        top: -19px;
+        right: 0;
+        transform: translateX(50%) rotate(45deg);
+        border-radius: 2px;
+      }
+      
+      
+      }
+      
     .item_title {
         font-size: 1.6rem;
+        margin: 10px 0px;
+        font-weight: 700;
         color: white;
-        font-weight: 500;
-        margin: 0.8rem 0;
     }
     .container {
         max-width: 1000px;
-        width: 90%;
+        width: 100%;
         margin: 0 auto;
         display: grid;
         padding: 5rem;
@@ -369,41 +437,12 @@ body{
     
 }
 
-.group-1,
-.group-2 {
-	display: flex;
-	flex-direction: column;
-	gap: 5rem;
-}
-
-.group-3 > div {
-	flex: 1;
-}
-
-.group-3 {
-	max-width: 700px;
-	width: 100%;
-	margin: 0 auto;
-	grid-column: 1/-1;
-	display: flex;
-	flex-direction: row;
-	gap: 5rem;
-}
 
 
 
-.skills_list {
-	margin-top: 1rem;
-	margin-left: 2rem;
-	line-height: 2;
-}
 
-.skills_list li{
-	font-size: 1.4rem;
-	color: white;
-	font-weight: 500;
-	margin: 1.5rem 0;
-}
+
+
 
 /* Ref  */
 .ref_item {
@@ -412,7 +451,9 @@ body{
 .ref_name {
 	font-size: 1.6rem;
 	font-weight: 700;
+    color: white;
 }
+
 
 /* eduction */
 .edu_item {
@@ -484,7 +525,7 @@ hr {
 }
 
 .profile_profileImg {
-	max-width: 250px;
+	min-width: 250px;
 }
 .profile_name_firstName {
 	color: white;
@@ -551,17 +592,39 @@ hr {
 	font-weight: 400;
 	color: var(--text-color);
 }
+.end{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 50px;
+    gap: 50px;
+}
+.update{
+    background-color: #1d8039 !important;
+}
+.cancel{
+    background-color: #85807b !important;
+}
 
 
-@media screen and (max-width: 860px) {
-    .container .form{
-        overflow-y: scroll;
-    }
-    .container .form::-webkit-scrollbar{
-       display: none;
-    }
-    
-    
+.group-1,
+.group-2 {
+	display: flex;
+	flex-direction: column;
+	gap: 5rem;
+}
+
+.group-3 > div {
+	flex: 1;
+}
+
+.group-3 {
+	max-width: 700px;
+	width: 100%;
+	margin: 0 auto;
+	grid-column: 1/-1;
+	display: flex;
+	flex-direction: row;
+	gap: 5rem;
 }
 
 
@@ -570,6 +633,13 @@ hr {
     .profile_container {
 		flex-direction: column;
 	}
+    .container{
+        position: relative;
+        border-radius: 0px;
+        padding: 20px;
+        margin: 80px 0px;
+        background-color: #fff;
+    }
 }
 @media screen and (max-width: 1080px)
 {
@@ -596,26 +666,29 @@ hr {
         display: block;
     }
     
-    .container{
-        position: relative;
-        border-radius: 0px;
-        padding: 20px;
-        margin: 0px 0px;
-        background-color: #fff;
-    }
+    
     
 }
 
+@media screen and (max-width: 860px) {
+    .container .form{
+        overflow-y: scroll;
+    }
+    .container .form::-webkit-scrollbar{
+       display: none;
+    }
+    
+    
+}
+	
+
 @media only screen and (max-width: 768px) {
-	hr {
+    hr {
 		margin: 0 auto;
 	}
     .fields .input-field{
         width: 100%
     }
-}
-
-@media only screen and (max-width: 768px) {
     .resume-display .container{
         width: 100%;
         grid-template-columns: 1fr;
@@ -630,3 +703,12 @@ hr {
 	}
     
 }
+
+@keyframes fillBars{
+    from{
+      width: 0;
+    }
+    to{
+      width: 100%;
+    }
+  }

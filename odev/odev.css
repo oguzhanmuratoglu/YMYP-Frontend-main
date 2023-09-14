@@ -163,9 +163,8 @@ a {
 }
 .item_title {
 	font-size: 1.6rem;
-	color: white;
-	font-weight: 500;
-	margin: 0.8rem 0;
+	margin: 10px 0px;
+	font-weight: 700;
 }
 .item_subtitle {
 	font-size: 1.4rem;
@@ -268,25 +267,98 @@ a {
 	}
 }
 
-/* Expertise */
-.skills_list {
-	margin-top: 1rem;
-	margin-left: 2rem;
-	line-height: 2;
+
+.skills{
+	display: flex;
+	justify-content: center;
+	background: transparent;
+	font-family: "Ubuntu", sans-serif;
+	flex-direction: column;
+  
+  
+  .skill-name{
+	font-size: 15px;
+	font-weight: 700;
+	color: #f1f1f1;
+	text-transform: uppercase;
+	margin: 20px 0;
+  }
+  
+  .skill-bar{
+	height: 14px;
+	background: #fefefe;
+	border-radius: 3px;
+  }
+  
+  .skill-per{
+	height: 14px;
+	background: #8da215;
+	border-radius: 3px;
+	position: relative;
+	animation: fillBars 2.5s 1;
+  }
+  
+  .skill-per::before{
+	content: attr(per);
+	position: absolute;
+	padding: 4px 6px;
+	background: #20498a;
+	border-radius: 4px;
+	font-size: 12px;
+	top: -35px;
+	right: 0;
+	transform: translateX(50%);
+  }
+  
+  .skill-per::after{
+	content: "";
+	position: absolute;
+	width: 10px;
+	height: 10px;
+	background: #20498a;
+	top: -19px;
+	right: 0;
+	transform: translateX(50%) rotate(45deg);
+	border-radius: 2px;
+  }
+  
+  
+  }
+  @keyframes fillBars{
+	from{
+	  width: 0;
+	}
+	to{
+	  width: 100%;
+	}
+  }
+
+  
+.group-1,
+.group-2 {
+	display: flex;
+	flex-direction: column;
+	gap: 5rem;
 }
 
-.skills_list li{
-	font-size: 1.4rem;
-	color: white;
-	font-weight: 500;
-	margin: 1.5rem 0;
+.group-3 > div {
+	flex: 1;
 }
 
+.group-3 {
+	max-width: 700px;
+	width: 100%;
+	margin: 0 auto;
+	grid-column: 1/-1;
+	display: flex;
+	flex-direction: row;
+	gap: 5rem;
+}
 /* Ref  */
 .ref_item {
 	margin-top: 2rem;
 }
-.ref_name {
+.item-name {
 	font-size: 1.6rem;
 	font-weight: 700;
 }
