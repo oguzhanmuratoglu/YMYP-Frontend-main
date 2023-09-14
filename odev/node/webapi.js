@@ -15,7 +15,7 @@ let person = {
     email : "oguzhanmuratoglu14@gmail.com",
     address : "Bolu/Turkey",
     img : "/odev/yg.jpg",
-    phone : "0 (543) 463 8570",
+    phone : "0 (543) 463 ****",
     aboutMe : "<p class='description profile_description'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore etdolore magna aliqua. Ut enim adminim veniam</p>"
 
 }

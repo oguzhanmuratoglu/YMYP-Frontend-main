@@ -399,6 +399,12 @@ function deleteSkillDetail(id){
         document.getElementById(`ce-${ìd}`).remove();
     }
 
+    function confirmed(){
+        const confirmed = confirm("Çıkmak istediğinize emin misiniz?");
+        if(confirmed){
+            updateAllResumeDetails();
+        }
+    }
 
     function updateAllResumeDetails(){
         const workExperiencesCheck = updateWorkExperiencesCheck();
@@ -958,7 +964,6 @@ function updateResume(){
                 check18 =false;
                 }
             }
-            debugger;
             document.getElementById("indexSkills").innerHTML = createSkillHtmlTagsForResumeDisplay(skills);
 
     resumeDisplay.classList.remove("hidden");
@@ -1075,22 +1080,47 @@ function reload(){
 
 
 // Sayfanın yüksekliğini alın
-const pageHeight = document.body.scrollHeight;
+// const pageHeight = document.body.scrollHeight;
 
-// Sayfa içindeki dikey kaydırma olaylarını dinleyin
-window.addEventListener('scroll', () => {
-    // Sayfanın şu anki kaydırma pozisyonunu alın
-    const scrollPosition = window.scrollY;
-    // Örneğin, sayfanın yukarı kaydırılmasıyla iframe'i yukarı kaydırabilirsiniz
-    // Burada sayfanın yukarıya kaydırılma ile ilgili bir kontrol sağlayabilirsiniz.
-    // Örnek olarak:
-    if(scrollPosition>250){
-        if (scrollPosition -400 < pageHeight) {
-            resumeDisplay.style.transform = `translateY(${scrollPosition-200}px)`;
-        }
+// // Sayfa içindeki dikey kaydırma olaylarını dinleyin
+// window.addEventListener('scroll', () => {
+//     // Sayfanın şu anki kaydırma pozisyonunu alın
+//     const scrollPosition = window.scrollY;
+//     // Örneğin, sayfanın yukarı kaydırılmasıyla iframe'i yukarı kaydırabilirsiniz
+//     // Burada sayfanın yukarıya kaydırılma ile ilgili bir kontrol sağlayabilirsiniz.
+//     // Örnek olarak:
+//     if(scrollPosition>250){
+//         if (scrollPosition +400 < pageHeight) {
+//             resumeDisplay.style.transform = `translateY(${scrollPosition-200}px)`;
+//         }
+//     }
+// });
+
+
+const accordionItemHeaders = document.querySelectorAll(".accordion-item-header");
+
+accordionItemHeaders.forEach(accordionItemHeader => {
+  accordionItemHeader.addEventListener("click", event => {
+    
+    // Uncomment in case you only want to allow for the display of only one collapsed item at a time!
+    
+    // const currentlyActiveAccordionItemHeader = document.querySelector(".accordion-item-header.active");
+    // if(currentlyActiveAccordionItemHeader && currentlyActiveAccordionItemHeader!==accordionItemHeader) {
+    //   currentlyActiveAccordionItemHeader.classList.toggle("active");
+    //   currentlyActiveAccordionItemHeader.nextElementSibling.style.maxHeight = 0;
+    // }
+
+    accordionItemHeader.classList.toggle("active");
+    const accordionItemBody = accordionItemHeader.nextElementSibling;
+    if(accordionItemHeader.classList.contains("active")) {
+      accordionItemBody.style.maxHeight = accordionItemBody.scrollHeight + "px";
     }
+    else {
+      accordionItemBody.style.maxHeight = 0;
+    }
+    
+  });
 });
-
 
 
 

@@ -30,127 +30,150 @@
             </li>
         </ul>
     </nav>
-        <div id="edit-form" >
-            <div class="container">
+    <div class="main-div">
+    <div id="edit-form" >
+      <div class="container">
 
-        <header>Resume Editor</header>
+  <header>Resume Editor</header>
+  <div class="accordion">
+      <div class="form">
 
-            <div class="form">
-                <div class="details personal">
-                    <span id="container-title" class="title">Personal Details</span>
-                    <div id="container-field" class="fields">
-                        <div class="input-field">
-                            <label>First Name</label>
-                            <input id="firstName" onkeyup="updateResume()" class="personal-details" type="text" placeholder="Enter your First Name">
-                        </div>
-                        <div class="input-field">
-                            <label>Last Name</label>
-                            <input id="lastName" onkeyup="updateResume()" type="text" class="personal-details" placeholder="Enter your Last Name">
-                        </div>
-                        <div class="input-field">
-                            <label>Title</label>
-                            <input id="title" onkeyup="updateResume()" class="personal-details" type="text" placeholder="Enter your title">
-                        </div>
+          <div class="accordion-item">
+            <div class="accordion-item-header title">
+              <span>Personal Details</span>
+            </div>
+            <div class="accordion-item-body">
 
-                        <div class="input-field">
-                            <label>Date of Birth</label>
-                            <input id="dateOfBirth" onkeyup="updateResume()" class="personal-details" type="date" placeholder="Enter birth date">
-                        </div>
-                        <div class="input-field">
-                            <label>Email</label>
-                            <input id="email" type="text" onkeyup="updateResume()" class="personal-details" placeholder="Enter your email">
-                        </div>
-                        <div class="input-field">
-                            <label>Address</label>
-                            <input id="address" class="personal-details" onkeyup="updateResume()" type="text" placeholder="Enter your Address">
-                        </div>
-                        <div class="input-field">
-                            <label>Mobile Number</label>
-                            <input id="phone" type="text" onkeyup="updateResume()" class="personal-details" placeholder="Enter mobile number">
-                        </div>
-                        <!-- <div class="input-field">
-                            <label>Profile Photo</label>
-                            <input type="text" placeholder="Enter your Nationality"> 
-                        </div> -->
-                    </div>
+              <div id="container-field" class="fields accordion-item-body-content">
+                <div class="input-field">
+                    <label>First Name</label>
+                    <input id="firstName" onkeyup="updateResume()" class="personal-details" type="text" placeholder="Enter your First Name">
+                </div>
+                <div class="input-field">
+                    <label>Last Name</label>
+                    <input id="lastName" onkeyup="updateResume()" type="text" class="personal-details" placeholder="Enter your Last Name">
+                </div>
+                <div class="input-field">
+                    <label>Title</label>
+                    <input id="title" onkeyup="updateResume()" class="personal-details" type="text" placeholder="Enter your title">
                 </div>
 
-                <div class="aboutMe">
-                    <span >About Me</span>
-
-                    <div id="container-field" class="fields">
-                        <div class="input-field" style="width: 100%">
-                            <label>Tell us about yourself (Max 400 Characters)</label>
-                            <textarea id="about-me" onkeyup="updateResume()" class="personal-details" type="text" style="height: auto; min-height: 100px;" placeholder="I'm a full stack developer..." maxlength="400"></textarea>
-                        </div>
-                    </div>
+                <div class="input-field">
+                    <label>Date of Birth</label>
+                    <input id="dateOfBirth" onkeyup="updateResume()" class="personal-details" type="date" placeholder="Enter birth date">
                 </div>
-
-                <div id="experience-field" class="experiences" >
-                  <div class="title-style">
-                      <span class="title">Skills</span>
-                  <button class="add-form" onclick="addSkill()">Ekle +</button>
-                  </div>
-                      <div id="skill"  ></div>
-                      <div id="skills"></div>
+                <div class="input-field">
+                    <label>Email</label>
+                    <input id="email" type="text" onkeyup="updateResume()" class="personal-details" placeholder="Enter your email">
+                </div>
+                <div class="input-field">
+                    <label>Address</label>
+                    <input id="address" class="personal-details" onkeyup="updateResume()" type="text" placeholder="Enter your Address">
+                </div>
+                <div class="input-field">
+                    <label>Mobile Number</label>
+                    <input id="phone" type="text" onkeyup="updateResume()" class="personal-details" placeholder="Enter mobile number">
+                </div>
+                <!-- <div class="input-field">
+                    <label>Profile Photo</label>
+                    <input type="text" placeholder="Enter your Nationality"> 
+                </div> -->
               </div>
-
-                <div id="experience-field" class="experiences" >
-                    <div class="title-style">
-                        <span class="title">Experiences</span>
-                    <button class="add-form" onclick="addworkExperiences()">Ekle +</button>
-                    </div>
-                        <div id="workExperiences"></div>
-                        <div id="addworkExperience"></div>
-                </div>
-
-                <div id="experience-field" class="experiences">
-                    <div class="title-style">
-                        <span class="title">Educations</span>
-                    <button class="add-form" onclick="addEducation()">Ekle +</button>
-                    </div>
-                        <div id="education"></div>
-
-                        <div id="educations"></div>
-                </div>
-
-                <div id="experience-field" class="experiences">
-                    <div class="title-style">
-                        <span class="title">References</span>
-                    <button class="add-form" onclick="addReference()">Ekle +</button>
-                    </div>
-                        <div id="reference"></div>
-
-                        <div id="references"></div>
-                </div>
-
-
-                <div id="experience-field" class="experiences">
-                    <div class="title-style">
-                        <span class="title">Social Medias</span>
-                    <button class="add-form" onclick="addSocialMedia()">Ekle +</button>
-                    </div>
-                        <div id="socialMedia"></div>
-                        <div id="socialMedias"></div>
-                </div>
-
-
-                <div id="experience-field" class="experiences">
-                    <div class="title-style">
-                        <span class="title">Certifications</span>
-                    <button class="add-form" onclick="addCertification()">Ekle +</button>
-                    </div>
-                        <div id="certification"></div>
-                        <div id="certifications"></div>
-                </div>
-                <div class="end">
-                    <button class="update" onclick="updateAllResumeDetails();">Update</button>
-                    <button class="cancel" onclick="reload();">Cancel</button>
-                </div> 
-            </div>
-            
-            </div>
+                <div class="aboutMe accordion-item-body-content">
+                  <span >About Me</span>
+                  <div id="container-field" class="fields">
+                      <div class="input-field" style="width: 100%">
+                          <label>Tell us about yourself (Max 400 Characters)</label>
+                          <textarea id="about-me" onkeyup="updateResume()" class="personal-details" type="text" style="height: auto; min-height: 100px;" placeholder="I'm a full stack developer..." maxlength="400"></textarea>
+                      </div>
+                  </div>
+              </div>
+          
         </div>
+          </div>
+
+        <div class="accordion-item">
+          <div class="accordion-item-header title">
+            <span>Skills</span>
+            <button class="add-form" onclick="addSkill()">Ekle +</button>
+          </div>
+          <div class="accordion-item-body">
+            <div id="skill" class="accordion-item-body-content"></div>
+            <div id="skills" class="accordion-item-body-content"></div>
+          </div>
+        </div>
+
+
+
+
+        <div class="accordion-item">
+          <div class="accordion-item-header title">
+            <span>Experiences</span>
+            <button class="add-form" onclick="addworkExperiences()">Ekle +</button>
+          </div>
+          <div class="accordion-item-body">
+            <div id="workExperiences" class="accordion-item-body-content"></div>
+            <div id="addworkExperience" class="accordion-item-body-content"></div>
+          </div>
+        </div>
+
+
+
+        <div class="accordion-item">
+          <div class="accordion-item-header title">
+            <span>Educations</span>
+            <button class="add-form" onclick="addEducation()">Ekle +</button>
+          </div>
+          <div class="accordion-item-body">
+            <div id="education" class="accordion-item-body-content"></div>
+            <div id="educations" class="accordion-item-body-content"></div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <div class="accordion-item-header title">
+            <span>References</span>
+            <button class="add-form" onclick="addReference()">Ekle +</button>
+          </div>
+          <div class="accordion-item-body">
+            <div id="reference" class="accordion-item-body-content"></div>
+            <div id="references" class="accordion-item-body-content"></div>
+          </div>
+        </div>
+
+
+        <div class="accordion-item">
+          <div class="accordion-item-header title">
+            <span>Social Medias</span>
+            <button class="add-form" onclick="addSocialMedia()">Ekle +</button>
+          </div>
+          <div class="accordion-item-body">
+            <div id="socialMedia" class="accordion-item-body-content"></div>
+            <div id="socialMedias" class="accordion-item-body-content"></div>
+          </div>
+        </div>
+
+
+
+        <div class="accordion-item">
+          <div class="accordion-item-header title">
+            <span>Certifications</span>
+            <button class="add-form" onclick="addCertification()">Ekle +</button>
+          </div>
+          <div class="accordion-item-body">
+            <div id="certification" class="accordion-item-body-content"></div>
+            <div id="certifications" class="accordion-item-body-content"></div>
+          </div>
+        </div>
+
+          <div class="end">
+              <button class="update" onclick="confirmed();">Update</button>
+              <button class="cancel" onclick="reload();">Cancel</button>
+          </div> 
+      </div>
+ </div>
+</div>
+    </div>
 
  
         <div id="resume-display" class="hidden">
@@ -244,6 +267,7 @@
                 </div>
               </div>
     </div>
+  </div>
     
     <script src="https://unpkg.com/feather-icons"></script>
     <script src="https://kit.fontawesome.com/43ce813bff.js" crossorigin="anonymous"></script> 
