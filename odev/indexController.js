@@ -44,7 +44,6 @@ function setMyInformation(person){
     document.getElementById("phone").innerText = person.phone;
     document.getElementById("email").innerText = person.email;
     document.getElementById("dateOfBirth").innerText = setAndConvertDate(person.dateOfBirth);
-    document.getElementById("img").src = person.img;
 }
 
 function setMySocialMedias(socialMedias){

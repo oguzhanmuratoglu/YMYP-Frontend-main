@@ -336,7 +336,6 @@ function deleteSkillDetail(id){
         <div class="input-field">
             <label>Title</label>
             <input class="social-medias" onkeyup="updateResume()" id="title-${socialMediaId}" type="text" placeholder="Exp: data-feather='linkedin' linkedin is a title">
-            <div id="title-${socialMediaId}-validation" class="hide error">Bu alanı doldurmak zorundasın!</div>
         </div>
         <div class="input-field">
             <label>Text</label>
@@ -400,8 +399,8 @@ function deleteSkillDetail(id){
     }
 
     function confirmed(){
-        const confirmed = confirm("Çıkmak istediğinize emin misiniz?");
-        if(confirmed){
+        const confirmed2 = confirm("Değişiklikleri kaydetmek istediğinize emin misiniz?");
+        if(confirmed2){
             updateAllResumeDetails();
         }
     }
@@ -424,7 +423,9 @@ function deleteSkillDetail(id){
 
         updateAllDetails();
     }
+    function checkInputValue(){
 
+    }
     function updatePersonalDetailsCheck(){
         const personalDetails = document.querySelectorAll(".personal-details");
         for(let personalDetail of personalDetails){

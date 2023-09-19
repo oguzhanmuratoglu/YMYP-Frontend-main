@@ -14,7 +14,6 @@ let person = {
     dateOfBirth : new Date("1999-04-16"),
     email : "oguzhanmuratoglu14@gmail.com",
     address : "Bolu/Turkey",
-    img : "/odev/yg.jpg",
     phone : "0 (543) 463 ****",
     aboutMe : "<p class='description profile_description'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore etdolore magna aliqua. Ut enim adminim veniam</p>"
 
@@ -37,13 +36,13 @@ let skills = [
     {
         id : 3,
         title : "JavaScript",
-        rate : 40
+        rate : 80
     },
 
     {
         id : 4,
         title : "Angular",
-        rate : 75
+        rate : 40
     },
 
     {
@@ -202,5 +201,7 @@ app.post("/api/set", (req,res)=> {
     res.json({message: "Update is successful"})
 })
 
-app.listen(5000,()=> console.log("Your api is running"));
+const port = process.env.PORT || 5000;
+
+app.listen(port,()=> console.log("Your api is running"));
 
